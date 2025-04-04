@@ -4,21 +4,15 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "utilisateur")
+@Table(name = "employeur")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Utilisateur {
+public class Employeur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String login;
-    private String password;
-
-    @ManyToOne
-    @JoinColumn(name = "idRole", nullable = false)
-    private Role role;
+    private String nomemployeur;
 }
-

@@ -1,13 +1,13 @@
 package com.app_gestion_formation.application_gestion_formation.models;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Employee {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // we want the id to be auto generate to use@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -29,7 +29,7 @@ public class Employee {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public Employee() {
     }
 
@@ -37,7 +37,7 @@ public class Employee {
         this.name = name;
     }
 
-    
+
 
 
 }

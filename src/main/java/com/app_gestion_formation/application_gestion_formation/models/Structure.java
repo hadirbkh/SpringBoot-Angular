@@ -4,21 +4,16 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "utilisateur")
+@Table(name = "structure")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Utilisateur {
+public class Structure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String login;
-    private String password;
-
-    @ManyToOne
-    @JoinColumn(name = "idRole", nullable = false)
-    private Role role;
+    private String libelle;
 }
 
