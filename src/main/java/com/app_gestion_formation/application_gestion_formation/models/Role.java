@@ -13,11 +13,13 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+     
     private RoleName nom;
     public enum RoleName {
         ADMIN, RESPONSABLE, UTILISATEUR
     }
+
+
 }
 
 

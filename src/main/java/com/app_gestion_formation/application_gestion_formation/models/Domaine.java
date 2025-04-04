@@ -15,5 +15,6 @@ public class Domaine {
     private int id;
 
     private String libelle;
+    
 }
 

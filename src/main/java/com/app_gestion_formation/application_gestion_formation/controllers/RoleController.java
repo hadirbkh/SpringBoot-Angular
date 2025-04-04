@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app_gestion_formation.application_gestion_formation.models.Employee;
 import com.app_gestion_formation.application_gestion_formation.models.Role;
-import com.app_gestion_formation.application_gestion_formation.repositories.EmployeeRepo;
 import com.app_gestion_formation.application_gestion_formation.repositories.RoleRepo;
 
 @RestController
@@ -49,7 +47,7 @@ public class RoleController {
         
         return roleRepo.findById(id)
                 .map(role -> {
-                    role.setName(updated.getName());
+                    role.setNom(updated.getNom());
                     return ResponseEntity.ok(roleRepo.save(role));
                 })
                 .orElse(ResponseEntity.notFound().build());
@@ -73,7 +71,7 @@ public class RoleController {
          
          return roleRepo.findById(id)
                  .map(role -> {
-                     role.setName(updated.getName());
+                     role.setNom(updated.getNom());
                      return ResponseEntity.ok(roleRepo.save(role));
                  })
                  .orElse(ResponseEntity.notFound().build());

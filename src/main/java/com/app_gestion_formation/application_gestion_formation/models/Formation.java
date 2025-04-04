@@ -1,5 +1,10 @@
 package com.app_gestion_formation.application_gestion_formation.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,5 +30,10 @@ public class Formation {
     private Domaine domaine;
 
     private double budget;
+
+    @ManyToMany(mappedBy = "formations")
+    @JsonIgnore
+
+    private List<Participant> participants = new ArrayList<>();
 }
 

@@ -14,40 +14,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app_gestion_formation.application_gestion_formation.models.Employee;
-import com.app_gestion_formation.application_gestion_formation.repositories.EmployeeRepo;
+import com.app_gestion_formation.application_gestion_formation.models.Employeur;
+import com.app_gestion_formation.application_gestion_formation.repositories.EmployeurRepo;
 
 @RestController
 @RequestMapping("/emp")
-public class EmployeeController {
+public class EmployeurController {
     
     @Autowired // to access the jpa repositry 
-    EmployeeRepo employeeRepo;
+    EmployeurRepo employeeRepo;
 
-    public EmployeeController(EmployeeRepo employeeRepo) {
+    public EmployeurController(EmployeurRepo employeeRepo) {
         this.employeeRepo = employeeRepo;
     }
 
     @PostMapping
-    public Employee addEmployee(@RequestBody Employee employee){
+    public Employeur addEmployee(@RequestBody Employeur employee){
         employeeRepo.save(employee);
         return employee;
     }
 
     @GetMapping
-    public List<Employee> getEmployee(){
-        List<Employee> employee = employeeRepo.findAll();
+    public List<Employeur> getEmployee(){
+        List<Employeur> employee = employeeRepo.findAll();
         return employee;
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Employee> updateEmployee(
+    public ResponseEntity<Employeur> updateEmployee(
             @PathVariable Integer id,// Extracts the id from the request URL
-            @RequestBody Employee updated) {//Takes the new employee data sent in the request body and maps it to an Employee object
+            @RequestBody Employeur updated) {//Takes the new employee data sent in the request body and maps it to an Employee object
         
         return employeeRepo.findById(id)
                 .map(emp -> {
-                    emp.setName(updated.getName());
+                    emp.setNomemployeur(updated.getNomemployeur());
                     return ResponseEntity.ok(employeeRepo.save(emp));
                 })
                 .orElse(ResponseEntity.notFound().build());
@@ -65,13 +65,13 @@ public class EmployeeController {
     }
 // replace only the field that i give it 
     @PatchMapping("/{id}")
-    public ResponseEntity<Employee> patchEmployee(
+    public ResponseEntity<Employeur> patchEmployee(
             @PathVariable Integer id,
-            @RequestBody Employee updated) {
+            @RequestBody Employeur updated) {
         
         return employeeRepo.findById(id)
                 .map(emp -> {
-                    emp.setName(updated.getName());
+                    emp.setNomemployeur(updated.getNomemployeur());
                     return ResponseEntity.ok(employeeRepo.save(emp));
                 })
                 .orElse(ResponseEntity.notFound().build());
