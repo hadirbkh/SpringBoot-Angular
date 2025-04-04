@@ -53,10 +53,15 @@ public class SecurityConfig {
         http
             .csrf().disable()
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/**").permitAll() // Allow all requests
+            /* .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/role/**").permitAll()
                 .requestMatchers("/login/**", "/css/**", "/js/**").permitAll()
+                .requestMatchers("/formation/**").permitAll()
                 .requestMatchers("/utilisateur/**").permitAll()
-                /* .authenticated()
+                .requestMatchers("/domaine/**").permitAll()
+                
+                .authenticated()
                 .anyRequest().authenticated()*/
                 
             )
