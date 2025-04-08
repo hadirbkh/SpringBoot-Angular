@@ -35,6 +35,7 @@ public class SecurityConfig {
         return utilisateurService;
     }
     
+    
     @Bean 
     public AuthenticationProvider authenticationProvider() { // Changed method name to lowercase
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -53,12 +54,15 @@ public class SecurityConfig {
         http
             .csrf().disable()
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/**").permitAll() // Allow all requests
+            /* .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/role/**").permitAll()
                 .requestMatchers("/login/**", "/css/**", "/js/**").permitAll()
+                .requestMatchers("/formation/**").permitAll()
                 .requestMatchers("/utilisateur/**").permitAll()
-                /* .authenticated()
-                .anyRequest().authenticated()*/
-                
+                .requestMatchers("/domaine/**").permitAll()       
+                .authenticated()
+                .anyRequest().authenticated()*/            
             )
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Ensure stateless authentication (for REST APIs)
