@@ -19,7 +19,7 @@ import com.app_gestion_formation.application_gestion_formation.repositories.Doma
 
 @RestController
 @RequestMapping("/domaine")
-public class DomaineController {
+public class DomaineController{
 
     private final DomaineRepo domaineRepo;
 
