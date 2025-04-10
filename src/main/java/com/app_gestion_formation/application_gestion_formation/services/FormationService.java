@@ -50,7 +50,7 @@ public class FormationService {
 
     @Transactional
 
-	public MessageResponse delete(long id)  {
+	public MessageResponse delete(Integer id)  {
     	Formation formation = findById(id);
 		if (formation == null){
         	return new MessageResponse(false,"Echec !","Cet formation n'existe pas !");   
@@ -69,7 +69,7 @@ public class FormationService {
 
 
 
-	public Formation findById(long id) {
+	public Formation findById(Integer id) {
 		Formation formation = formationRepository.findById(id).orElse(null);
         return formation;
 	}
