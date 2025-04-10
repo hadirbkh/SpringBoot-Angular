@@ -19,7 +19,7 @@ import com.app_gestion_formation.application_gestion_formation.repositories.Doma
 import com.app_gestion_formation.application_gestion_formation.repositories.FormationRepo;
 
 @RestController
-@RequestMapping("/formation")
+@RequestMapping("/api/formation")
 public class FormationController {
 
     private final FormationRepo formationRepo;
