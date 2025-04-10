@@ -60,7 +60,7 @@ public class ParticipantController {
     }
 
     @PostMapping("/{id}/inscription")
-    public ResponseEntity<Participant> inscrireAuxFormations(@PathVariable Long id,@RequestBody List<Long> formationIds)
+    public ResponseEntity<Participant> inscrireAuxFormations(@PathVariable int id,@RequestBody List<Integer> formationIds)
     {
         Participant updated = participantService.inscrireParticipantAuxFormations(id, formationIds);
         return ResponseEntity.ok(updated);
