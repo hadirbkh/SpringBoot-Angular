@@ -1,5 +1,4 @@
 package com.app_gestion_formation.application_gestion_formation.controllers;
-
 import com.app_gestion_formation.application_gestion_formation.models.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
