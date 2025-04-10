@@ -25,7 +25,7 @@ public class UtilisateurService implements UserDetailsService {
             var userObj = user.get();
             return User.withUsername(userObj.getLogin())
                     .password(userObj.getPassword())
-                    .roles(userObj.getRole().getName().name())
+                    .roles(userObj.getRole().getNom().name())
                     .build();
         } else {
             throw new UsernameNotFoundException(username);
