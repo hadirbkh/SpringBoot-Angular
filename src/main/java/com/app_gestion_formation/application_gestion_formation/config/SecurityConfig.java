@@ -1,5 +1,7 @@
 package com.app_gestion_formation.application_gestion_formation.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.app_gestion_formation.application_gestion_formation.services.UtilisateurService;
 
@@ -52,6 +57,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+            .cors() 
+            .and()
             .csrf().disable()
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/**").permitAll() // Allow all requests
@@ -75,5 +82,18 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+    @Bean
+public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // Angular origin
+    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Allowed HTTP methods
+    configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Allowed headers
+    configuration.setAllowCredentials(true); // If you're using cookies or HTTP basic auth
+
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
+}
 
 }
