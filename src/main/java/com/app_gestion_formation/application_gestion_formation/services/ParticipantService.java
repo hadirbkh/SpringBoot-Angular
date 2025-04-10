@@ -60,9 +60,9 @@ public class ParticipantService {
         return null;
     }
 
-     public Participant inscrireParticipantAuxFormations(Long participantId, List<Long> formationIds) {
-        Participant participant = participantRepository.findById(participantId)
-                .orElseThrow(() -> new RuntimeException("Participant introuvable"));
+     public Participant inscrireParticipantAuxFormations(int participantId, List<Integer> formationIds) {
+        Participant participant = participantRepository.findById(participantId);
+                // .orElseThrow(() -> new RuntimeException("Participant introuvable"));
 
         List<Formation> formations = formationRepository.findAllById(formationIds);
 
@@ -70,7 +70,7 @@ public class ParticipantService {
 
         return participantRepository.save(participant);
     }
-    public Participant desinscrireFormations(Long participantId, List<Long> formationIds) 
+    public Participant desinscrireFormations(Long participantId, List<Integer> formationIds) 
     {
         Participant participant = participantRepository.findById(participantId)
                 .orElseThrow(() -> new RuntimeException("Participant introuvable"));
