@@ -47,7 +47,7 @@ public class RoleController {
         
         return roleRepo.findById(id)
                 .map(role -> {
-                    role.setName(updated.getName());
+                    role.setNom(updated.getNom());
                     return ResponseEntity.ok(roleRepo.save(role));
                 })
                 .orElse(ResponseEntity.notFound().build());
@@ -71,7 +71,7 @@ public class RoleController {
          
          return roleRepo.findById(id)
                  .map(role -> {
-                     role.setName(updated.getName());
+                     role.setNom(updated.getNom());
                      return ResponseEntity.ok(roleRepo.save(role));
                  })
                  .orElse(ResponseEntity.notFound().build());

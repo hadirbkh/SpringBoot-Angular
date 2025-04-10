@@ -59,7 +59,7 @@ public class UtilisateurController {
                     if (updated.getPassword() != null) {
                         utilisateur.setPassword(passwordEncoder.encode(updated.getPassword()));
                     }
-                    if (updated.getRole() != null && updated.getRole().getId() != null) {
+                    if (updated.getRole() != null ) {
                         Role role = roleRepo.findById(updated.getRole().getId())
                                 .orElseThrow(() -> new RuntimeException("Role not found"));
                         utilisateur.setRole(role);

@@ -1,6 +1,9 @@
 package com.app_gestion_formation.application_gestion_formation.models;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,4 +31,12 @@ public class Participant {
 
     private String email;
     private int tel;
+
+    @ManyToMany
+    @JoinTable(
+        name = "participant_formation",
+        joinColumns = @JoinColumn(name = "participant_id"),
+        inverseJoinColumns = @JoinColumn(name = "formation_id")
+    )
+    private List<Formation> formations = new ArrayList<>();
 }
