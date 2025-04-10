@@ -20,7 +20,7 @@ import com.app_gestion_formation.application_gestion_formation.repositories.Role
 import com.app_gestion_formation.application_gestion_formation.repositories.UtilisateurRepo;
 
 @RestController
-@RequestMapping("/utilisateur")
+@RequestMapping("/api/utilisateur")
 public class UtilisateurController {
     
     private final UtilisateurRepo utilisateurRepo;
