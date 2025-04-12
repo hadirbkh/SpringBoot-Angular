@@ -71,3 +71,14 @@
     /* For top positioning (if needed) */
     margin-top: 20px !important;
   }
+  .header-with-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 97%;
+  }
+  
+  .button{
+    background-color: rgb(82, 163, 255);
+    color: black;
+  }
