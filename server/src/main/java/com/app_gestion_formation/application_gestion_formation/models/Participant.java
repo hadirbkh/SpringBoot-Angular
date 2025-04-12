@@ -16,7 +16,7 @@ import lombok.*;
 public class Participant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String nom;
     private String prenom;
@@ -39,4 +39,10 @@ public class Participant {
         inverseJoinColumns = @JoinColumn(name = "formation_id")
     )
     private List<Formation> formations = new ArrayList<>();
+
+    public Participant orElse(Object object) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'orElse'");
+    }
+
 }

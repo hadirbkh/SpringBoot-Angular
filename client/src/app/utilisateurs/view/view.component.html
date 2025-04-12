@@ -1,1 +1,27 @@
-<p>view works!</p>
+<mat-card class="user-card">
+    <mat-card-header class="card-header">
+      <mat-card-title class="card-title">Détails de {{ userDetails?.login }}</mat-card-title> 
+    </mat-card-header>
+  
+    <mat-divider></mat-divider>
+  
+    <mat-card-content class="card-content">
+      <ng-container *ngIf="userDetails">
+        <div class="detail-row">
+          <span class="detail-label">Nom:</span>
+          <span class="detail-value">{{ userDetails?.login }}</span><!-- i have to change this !!!!!!!!!!!! -->
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Login:</span>
+          <span class="detail-value">{{ userDetails?.login }}</span>
+        </div>
+      </ng-container>
+  
+      <!-- Loading state -->
+      <div *ngIf="!userDetails" class="loading-state">
+        <mat-spinner diameter="30"></mat-spinner>
+        <span>Chargement en cours...</span>
+      </div>
+    </mat-card-content>
+  </mat-card>

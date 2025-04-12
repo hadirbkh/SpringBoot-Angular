@@ -1,6 +1,7 @@
 package com.app_gestion_formation.application_gestion_formation.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,9 @@ import com.app_gestion_formation.application_gestion_formation.repositories.Part
 import com.app_gestion_formation.application_gestion_formation.response.MessageResponse;
 
 import jakarta.transaction.Transactional;
-
+/*
 @Service
+
 public class ParticipantService {
 
     @Autowired
@@ -60,7 +62,7 @@ public class ParticipantService {
         return null;
     }
 
-     public Participant inscrireParticipantAuxFormations(int participantId, List<Integer> formationIds) {
+     public Participant inscrireParticipantAuxFormations(Long participantId, List<Integer> formationIds) {
         Participant participant = participantRepository.findById(participantId);
                 // .orElseThrow(() -> new RuntimeException("Participant introuvable"));
 
@@ -72,8 +74,8 @@ public class ParticipantService {
     }
     public Participant desinscrireFormations(Long participantId, List<Integer> formationIds) 
     {
-        Participant participant = participantRepository.findById(participantId)
-                .orElseThrow(() -> new RuntimeException("Participant introuvable"));
+        Optional participant = participantRepository.findById(participantId);
+                //.orElseThrow(() -> new RuntimeException("Participant introuvable"));
     
         List<Formation> formations = formationRepository.findAllById(formationIds);
         participant.getFormations().removeAll(formations);
@@ -81,3 +83,4 @@ public class ParticipantService {
         return participantRepository.save(participant);
     }
 }
+*/
