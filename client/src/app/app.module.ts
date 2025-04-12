@@ -9,10 +9,13 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { UtilisateursModule } from './utilisateurs/utilisateurs.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     UtilisateursModule,
     MatPaginatorModule,
     HttpClientModule,
+    MatListModule,
   
   ],
   providers: [],

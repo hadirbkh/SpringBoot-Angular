@@ -1,6 +1,7 @@
 package com.app_gestion_formation.application_gestion_formation.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,14 @@ public class UtilisateurController {
     public List<Utilisateur> getUtilisateurs() {
         return utilisateurRepo.findAll();
     }
+
+    @GetMapping("/{id}")
+    public Utilisateur getUtilisateurById(@PathVariable Integer id) {
+        return utilisateurRepo
+                 .findById(id)
+                 .orElse(null);    
+    }
+    
 
     @PutMapping("/{id}")
     public ResponseEntity<Utilisateur> updateUtilisateur(
