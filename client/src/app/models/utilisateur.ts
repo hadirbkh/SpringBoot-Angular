@@ -1,7 +1,6 @@
 export interface Utilisateur {
-    id:Number;
-    name:string;
+    id:number;
     login:string;
     password:string;
-    id_role:Number;
+    role:{id:number};
 }

@@ -11,6 +11,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatListModule} from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import {MatListModule} from '@angular/material/list';
     MatPaginatorModule,
     HttpClientModule,
     MatListModule,
+    MatDialogModule,
+    MatButtonModule
   
   ],
   providers: [],

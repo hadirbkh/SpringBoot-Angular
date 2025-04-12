@@ -18,8 +18,9 @@
 </div>
 
 <mat-card class="mat-card">
-    <mat-card-header>
+    <mat-card-header  class="header-with-button">
         <mat-card-title>Liste des utilisateurs</mat-card-title>
+        <button mat-raised-button (click)="openDialog('0ms', '0ms')" class="button">Ajouter</button>
     </mat-card-header>
     <mat-card-content>
         <mat-card>
@@ -45,8 +46,8 @@
                       <a [routerLink]="['view', element.id]">
                           <mat-icon class="icon-color" aria-hidden="false" aria-label="View icon" fontIcon="perm_identity"></mat-icon>
                       </a> |
-                      <a [routerLink]="['edit', element.id]">
-                          <mat-icon class="icon-color" aria-hidden="false" aria-label="Edit icon" fontIcon="edit"></mat-icon>
+                      <a >
+                          <mat-icon class="icon-color" aria-hidden="false" aria-label="Edit icon" fontIcon="edit" (click)="openUpdateDialog(element)"></mat-icon>
                       </a>
                           <mat-icon 
                           class="icon-color" 
