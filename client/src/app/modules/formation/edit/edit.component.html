@@ -21,6 +21,14 @@
         <mat-label>Duree</mat-label>
         <input matInput [(ngModel)]="formation.duree" />
       </mat-form-field>
+
+      <mat-form-field style="width: 100%">
+        <mat-label>Domaine</mat-label>
+        <mat-select>
+          <mat-option  *ngFor="let domaine of domainesList" [value]="domaine" [(ngModel)]="formation.domaine" >{{domaine.libelle}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
     </mat-dialog-content>
   </div>
 </div>

@@ -1,5 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { RolesService } from './../../../services/roles.service';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Role } from 'src/app/models/roles';
 import { Utilisateur } from 'src/app/models/utilisateur';
 import { UtilisateursService } from 'src/app/services/utilisateurs.service';
 
@@ -8,12 +10,19 @@ import { UtilisateursService } from 'src/app/services/utilisateurs.service';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css']
 })
-export class AddComponent {
-  readonly dialogRef = inject(MatDialogRef<AddComponent>);  
+export class AddComponent implements OnInit {
+  readonly dialogRef = inject(MatDialogRef<AddComponent>);
   hide = true;
-  utilisateur : Utilisateur={login:'',password:'',role:{id:3}}as Utilisateur;
-  constructor(private utilisateurService: UtilisateursService) {}
-  
+  utilisateur : Utilisateur={login:'',password:'',role:{}}as Utilisateur;
+  rolesList ! : Role[]
+  constructor(private utilisateurService: UtilisateursService, private rolesService : RolesService ) {}
+
+  ngOnInit(){
+    this.rolesService.roles$.subscribe(
+      (roles)=>this.rolesList = roles
+    )
+  }
+
   clickEvent(event: MouseEvent) {
     this.hide=!this.hide;
     event.stopPropagation();
@@ -24,6 +33,6 @@ export class AddComponent {
       this.utilisateur = data;
       console.log(data);
     });  }
-  
-  
+
+
 }

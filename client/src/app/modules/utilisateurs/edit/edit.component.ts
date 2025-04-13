@@ -1,6 +1,8 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Role } from 'src/app/models/roles';
 import { Utilisateur } from 'src/app/models/utilisateur';
+import { RolesService } from 'src/app/services/roles.service';
 import { UtilisateursService } from 'src/app/services/utilisateurs.service';
 
 @Component({
@@ -9,13 +11,22 @@ import { UtilisateursService } from 'src/app/services/utilisateurs.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  readonly dialogRef = inject(MatDialogRef<EditComponent>);  
+  readonly dialogRef = inject(MatDialogRef<EditComponent>);
   hide = true;
-  utilisateur : Utilisateur={login:'',password:'',role:{id:3}}as Utilisateur;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Utilisateur,private utilisateurService: UtilisateursService) {}
-  
+  utilisateur : Utilisateur={login:'',password:'',role:{}}as Utilisateur;
+  rolesList ! : Role[]
+
+  constructor(
+              @Inject(MAT_DIALOG_DATA) public data: Utilisateur,
+              private utilisateurService: UtilisateursService,
+              private rolesService : RolesService
+            ) {}
+
   ngOnInit() {
     this.utilisateur={...this.data,password:''}; // The utilisateur object
+    this.rolesService.roles$.subscribe(
+      (roles)=>this.rolesList = roles
+    )
   }
 
   clickEvent(event: MouseEvent) {

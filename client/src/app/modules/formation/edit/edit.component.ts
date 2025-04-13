@@ -1,8 +1,10 @@
 import { FormationService } from '.././../../services/formation.service';
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Domaine } from 'src/app/models/domaine';
 import { Formation } from 'src/app/models/formation';
 import { Utilisateur } from 'src/app/models/utilisateur';
+import { DomaineService } from 'src/app/services/domaine.service';
 import { UtilisateursService } from 'src/app/services/utilisateurs.service';
 
 @Component({
@@ -18,11 +20,18 @@ export class EditComponent implements OnInit {
     annee: 0,
     duree: 0,
     budget: 0,
+    domaine : {}
   } as Formation;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Formation,private formationService: FormationService) {}
+
+  domainesList! : Domaine[]
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Formation,private formationService: FormationService , private domaineService : DomaineService) {}
 
   ngOnInit() {
     this.formation=this.data;
+    this.domaineService.domaines$.subscribe(
+      (domaines)=>this.domainesList = domaines
+    )
   }
 
   clickEvent(event: MouseEvent) {

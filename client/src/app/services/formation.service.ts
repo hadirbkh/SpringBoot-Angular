@@ -15,34 +15,30 @@ export class FormationService {
   formations$ = this.formationsSubject.asObservable(); // Expose as observable
 
   constructor(private httpClient: HttpClient) {
-    this.loadUsers(); // Load initial list
+    this.loadFormations(); // Load initial list
   }
 
   // Load and emit current list
-  private loadUsers() {
+  private loadFormations() {
     this.httpClient.get<Formation[]>(this.apiUrl)
       .subscribe(users => this.formationsSubject.next(users));
   }
 
   createFormation(formation: Formation): Observable<Formation> {
     return this.httpClient.post<Formation>(this.apiUrl, formation).pipe(
-      tap(() => this.loadUsers()) // Refresh list after creation
+      tap(() => this.loadFormations()) // Refresh list after creation
     );
-  }
-
-  getUserById(id: number): Observable<Formation> {
-    return this.httpClient.get<Formation>(`${this.apiUrl}/${id}`);
   }
 
   updateFormation(formation: Formation): Observable<Formation> {
     return this.httpClient.put<Formation>(`${this.apiUrl}/${formation.id}`, formation).pipe(
-      tap(() => this.loadUsers()) // Refresh list after update
+      tap(() => this.loadFormations()) // Refresh list after update
     );
   }
 
   deleteFormation(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiUrl}/${id}`).pipe(
-      finalize(() => this.loadUsers()) // Will run on success or error
+      finalize(() => this.loadFormations()) // Will run on success or error
     );
   }
 

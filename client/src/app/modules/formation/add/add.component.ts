@@ -1,15 +1,17 @@
+import { DomaineService } from './../../../services/domaine.service';
 import { FormationService } from '../../../services/formation.service';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Formation } from 'src/app/models/formation';
 import { UtilisateursService } from 'src/app/services/utilisateurs.service';
+import { Domaine } from 'src/app/models/domaine';
 
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css']
 })
-export class AddComponent {
+export class AddComponent implements OnInit {
   readonly dialogRef = inject(MatDialogRef<AddComponent>);
   hide = true;
   formation : Formation = {
@@ -17,10 +19,17 @@ export class AddComponent {
     annee: 0,
     duree: 0,
     budget: 0,
+    domaine : {}
   } as Formation;
-  constructor(private formationService: FormationService) {}
+  domainesList! : Domaine[]
+  constructor(private formationService: FormationService, private domaineService : DomaineService) {}
 
 
+  ngOnInit(){
+    this.domaineService.domaines$.subscribe(
+      (domaines)=>this.domainesList = domaines
+    )
+  }
 
   submitUser(){
     this.formationService.createFormation(this.formation).subscribe((data: Formation) => {
