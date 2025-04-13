@@ -1,10 +1,10 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import { Utilisateur } from '../models/utilisateur';
+import { Utilisateur } from '../../models/utilisateur';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { UtilisateursService } from '../services/utilisateurs.service';
+import { UtilisateursService } from '../../services/utilisateurs.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   MatDialog,
@@ -61,7 +61,7 @@ export class UtilisateursComponent {
 
   handleDelete(id: number) {
     if (this.isDeleting) return;
-    
+
     if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
       this.isDeleting = true;
       this.utilisateurService.deleteUtilisateur(id).subscribe({

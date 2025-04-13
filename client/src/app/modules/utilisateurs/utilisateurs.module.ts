@@ -12,7 +12,6 @@ import {MatInputModule} from '@angular/material/input';
 import { UtilisateursComponent } from './utilisateurs.component';
 import { ViewComponent } from './view/view.component';
 import { EditComponent } from './edit/edit.component';
-import { DeleteComponent } from './delete/delete.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddComponent } from './add/add.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -27,7 +26,6 @@ import { FormsModule } from '@angular/forms';
     AddComponent,
     ViewComponent,
     EditComponent,
-    DeleteComponent,
     PageNotFoundComponent
   ],
   imports: [
@@ -43,7 +41,7 @@ import { FormsModule } from '@angular/forms';
     MatDialogModule,
     MatButtonModule,MatFormFieldModule,
     MatInputModule,FormsModule,
-    
+
   ],
   exports: [
     // Add any components you want to make available to other modules

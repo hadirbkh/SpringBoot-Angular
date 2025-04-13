@@ -1,10 +1,10 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import { Utilisateur } from '../models/utilisateur';
+import { Utilisateur } from '../../models/utilisateur';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { UtilisateursService } from '../services/utilisateurs.service';
+import { UtilisateursService } from '../../services/utilisateurs.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   MatDialog,
@@ -16,8 +16,8 @@ import {
 } from '@angular/material/dialog';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
-import { FormationService } from '../services/formation.service';
-import { Formation } from '../models/formation';
+import { FormationService } from '../../services/formation.service';
+import { Formation } from '../../models/formation';
 
 @Component({
   selector: 'app-formations',

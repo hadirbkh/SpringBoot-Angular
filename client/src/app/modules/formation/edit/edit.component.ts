@@ -1,4 +1,4 @@
-import { FormationService } from './../../services/formation.service';
+import { FormationService } from '.././../../services/formation.service';
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Formation } from 'src/app/models/formation';

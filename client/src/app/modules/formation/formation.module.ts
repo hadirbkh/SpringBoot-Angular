@@ -11,7 +11,6 @@ import {MatInputModule} from '@angular/material/input';
 import { FromationsRoutingModule } from './formation-routing.module';
 import { ViewComponent } from './view/view.component';
 import { EditComponent } from './edit/edit.component';
-import { DeleteComponent } from './delete/delete.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddComponent } from './add/add.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -27,7 +26,6 @@ import { FormationComponent } from './formation.component';
     AddComponent,
     ViewComponent,
     EditComponent,
-    DeleteComponent,
     PageNotFoundComponent
   ],
   imports: [
