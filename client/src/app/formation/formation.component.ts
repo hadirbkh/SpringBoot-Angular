@@ -16,6 +16,8 @@ import {
 } from '@angular/material/dialog';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
+import { FormationService } from '../services/formation.service';
+import { Formation } from '../models/formation';
 
 @Component({
   selector: 'app-formations',
@@ -23,22 +25,22 @@ import { EditComponent } from './edit/edit.component';
   styleUrls: ['./formation.component.css']
 })
 export class FormationComponent {
-  utilisateur: Utilisateur[] = [];
-  dataSource = new MatTableDataSource(this.utilisateur);
+  formations: Formation[] = [];
+  dataSource = new MatTableDataSource(this.formations);
   selection = new SelectionModel(true, []);
-  displayColumns = ["select", "name", "login", "Actions"];
+  displayColumns = ['select', 'titre','annee','duree','budget','domaine','actions'];
   isDeleting = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private utilisateurService: UtilisateursService,
+    private utilisateurService: FormationService,
     private snackBar: MatSnackBar
   ) {
-      this.utilisateurService.utilisateurs$.subscribe(users => {
-        this.utilisateur= users;
-        this.dataSource.data = this.utilisateur;
+      this.utilisateurService.formations$.subscribe(formations => {
+        this.formations= formations;
+        this.dataSource.data = this.formations;
       });
   }
 
@@ -55,24 +57,24 @@ export class FormationComponent {
   }
   */
 
-  SelectHandler(row: Utilisateur) {
+  SelectHandler(row: Formation) {
     this.selection.toggle(row as never);
   }
 
   handleDelete(id: number) {
     if (this.isDeleting) return;
 
-    if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer cet formation ?")) {
       this.isDeleting = true;
-      this.utilisateurService.deleteUtilisateur(id).subscribe({
+      this.utilisateurService.deleteFormation(id).subscribe({
         next: () => {
-          this.showSuccess('Utilisateur supprimé avec succès');
+          this.showSuccess('Formation supprimé avec succès');
           this.isDeleting=false;
         },
         error: (err) => {
           console.log(err.status)
           if (err.status >= 200 && err.status < 300) {
-            this.showSuccess('Utilisateur supprimé avec succès');
+            this.showSuccess('Formation supprimé avec succès');
             this.isDeleting=false;
 
           } else {
@@ -114,12 +116,12 @@ export class FormationComponent {
     });
   }
 
-  openUpdateDialog(utilisateur:Utilisateur): void {
+  openUpdateDialog(formation:Formation): void {
     this.dialog.open(EditComponent, {
       width: '500px',
       enterAnimationDuration:0,
       exitAnimationDuration:0,
-      data: utilisateur
+      data: formation
     });
   }
 

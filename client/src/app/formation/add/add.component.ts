@@ -1,6 +1,7 @@
+import { FormationService } from './../../services/formation.service';
 import { Component, inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Utilisateur } from 'src/app/models/utilisateur';
+import { Formation } from 'src/app/models/formation';
 import { UtilisateursService } from 'src/app/services/utilisateurs.service';
 
 @Component({
@@ -9,21 +10,23 @@ import { UtilisateursService } from 'src/app/services/utilisateurs.service';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent {
-  readonly dialogRef = inject(MatDialogRef<AddComponent>);  
+  readonly dialogRef = inject(MatDialogRef<AddComponent>);
   hide = true;
-  utilisateur : Utilisateur={login:'',password:'',role:{id:3}}as Utilisateur;
-  constructor(private utilisateurService: UtilisateursService) {}
-  
-  clickEvent(event: MouseEvent) {
-    this.hide=!this.hide;
-    event.stopPropagation();
-  }
+  formation : Formation = {
+    titre: "",
+    annee: 0,
+    duree: 0,
+    budget: 0,
+  } as Formation;
+  constructor(private formationService: FormationService) {}
+
+
 
   submitUser(){
-    this.utilisateurService.createUser(this.utilisateur).subscribe((data: Utilisateur) => {
-      this.utilisateur = data;
+    this.formationService.createUser(this.formation).subscribe((data: Formation) => {
+      this.formation = data;
       console.log(data);
     });  }
-  
-  
+
+
 }

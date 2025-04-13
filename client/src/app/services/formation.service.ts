@@ -34,7 +34,7 @@ export class FormationService {
     return this.httpClient.get<Formation>(`${this.apiUrl}/${id}`);
   }
 
-  updateUser(formation: Formation): Observable<Formation> {
+  updateFormation(formation: Formation): Observable<Formation> {
     return this.httpClient.put<Formation>(`${this.apiUrl}/${formation.id}`, formation).pipe(
       tap(() => this.loadUsers()) // Refresh list after update
     );
