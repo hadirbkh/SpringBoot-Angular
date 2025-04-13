@@ -3,23 +3,8 @@
     <mat-dialog-content>
       <h2 mat-dialog-title>Ajouter une Formation </h2>
       <mat-form-field style="width: 100%">
-        <mat-label>Titre</mat-label>
-        <input matInput [(ngModel)]="formation.titre" />
-      </mat-form-field>
-
-      <mat-form-field style="width: 100%">
-        <mat-label>Annee</mat-label>
-        <input matInput [(ngModel)]="formation.annee" />
-      </mat-form-field>
-
-      <mat-form-field style="width: 100%">
-        <mat-label>Budget</mat-label>
-        <input matInput [(ngModel)]="formation.budget" />
-      </mat-form-field>
-
-      <mat-form-field style="width: 100%">
-        <mat-label>Duree</mat-label>
-        <input matInput [(ngModel)]="formation.duree" />
+        <mat-label>Libelle</mat-label>
+        <input matInput [(ngModel)]="domaine.libelle" />
       </mat-form-field>
     </mat-dialog-content>
   </div>
@@ -27,7 +12,7 @@
 
 <mat-dialog-actions class="header-with-button">
   <button mat-button mat-dialog-close>Annuler</button>
-  <button mat-button mat-dialog-close cdkFocusInitial (click)="submitUser()">
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="submit()">
     Ajouter
   </button>
 </mat-dialog-actions>

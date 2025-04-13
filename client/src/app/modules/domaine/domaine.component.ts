@@ -1,3 +1,4 @@
+import { DomaineService } from './../../services/domaine.service';
 import { Component, inject, ViewChild } from '@angular/core';
 import { Utilisateur } from '../../models/utilisateur';
 import { MatTableDataSource } from '@angular/material/table';
@@ -18,6 +19,7 @@ import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { FormationService } from '../../services/formation.service';
 import { Formation } from '../../models/formation';
+import { Domaine } from 'src/app/models/domaine';
 
 @Component({
   selector: 'app-domaines',
@@ -25,22 +27,22 @@ import { Formation } from '../../models/formation';
   styleUrls: ['./domaine.component.css']
 })
 export class DomaineComponent {
-  formations: Formation[] = [];
-  dataSource = new MatTableDataSource(this.formations);
+  domaines: Domaine[] = [];
+  dataSource = new MatTableDataSource(this.domaines);
   selection = new SelectionModel(true, []);
-  displayColumns = ['select', 'titre','annee','duree','budget','domaine','actions'];
+  displayColumns = ['select', 'libelle','actions'];
   isDeleting = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private utilisateurService: FormationService,
+    private domaineService: DomaineService,
     private snackBar: MatSnackBar
   ) {
-      this.utilisateurService.formations$.subscribe(formations => {
-        this.formations= formations;
-        this.dataSource.data = this.formations;
+      this.domaineService.domaines$.subscribe(domaines => {
+        this.domaines= domaines;
+        this.dataSource.data = this.domaines;
       });
   }
 
@@ -64,17 +66,17 @@ export class DomaineComponent {
   handleDelete(id: number) {
     if (this.isDeleting) return;
 
-    if (confirm("Êtes-vous sûr de vouloir supprimer cet formation ?")) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer ce Domaine ?")) {
       this.isDeleting = true;
-      this.utilisateurService.deleteFormation(id).subscribe({
+      this.domaineService.deleteDomaine(id).subscribe({
         next: () => {
-          this.showSuccess('Formation supprimé avec succès');
+          this.showSuccess('Domaine supprimé avec succès');
           this.isDeleting=false;
         },
         error: (err) => {
           console.log(err.status)
           if (err.status >= 200 && err.status < 300) {
-            this.showSuccess('Formation supprimé avec succès');
+            this.showSuccess('Domaine supprimé avec succès');
             this.isDeleting=false;
 
           } else {
@@ -116,12 +118,12 @@ export class DomaineComponent {
     });
   }
 
-  openUpdateDialog(formation:Formation): void {
+  openUpdateDialog(domaine:Domaine): void {
     this.dialog.open(EditComponent, {
       width: '500px',
       enterAnimationDuration:0,
       exitAnimationDuration:0,
-      data: formation
+      data: domaine
     });
   }
 

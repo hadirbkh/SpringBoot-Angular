@@ -1,9 +1,7 @@
-import { FormationService } from '.././../../services/formation.service';
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Formation } from 'src/app/models/formation';
-import { Utilisateur } from 'src/app/models/utilisateur';
-import { UtilisateursService } from 'src/app/services/utilisateurs.service';
+import { Domaine } from 'src/app/models/domaine';
+import { DomaineService } from 'src/app/services/domaine.service';
 
 @Component({
   selector: 'app-edit',
@@ -13,16 +11,13 @@ import { UtilisateursService } from 'src/app/services/utilisateurs.service';
 export class EditComponent implements OnInit {
   readonly dialogRef = inject(MatDialogRef<EditComponent>);
   hide = true;
-  formation : Formation = {
-    titre: "",
-    annee: 0,
-    duree: 0,
-    budget: 0,
-  } as Formation;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Formation,private formationService: FormationService) {}
+  domaine : Domaine = {
+    libelle: "",
+  } as Domaine;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Domaine,private domaineService: DomaineService) {}
 
   ngOnInit() {
-    this.formation=this.data;
+    this.domaine=this.data;
   }
 
   clickEvent(event: MouseEvent) {
@@ -31,9 +26,8 @@ export class EditComponent implements OnInit {
   }
 
   submit(){
-    this.formationService.updateFormation(this.formation).subscribe((data: Formation) => {
-      this.formation = data;
-      console.log(data);
+    this.domaineService.updateDomaine(this.domaine).subscribe((data: Domaine) => {
+      this.domaine = data;
     });  }
 
 }

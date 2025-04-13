@@ -24,7 +24,7 @@ export class FormationService {
       .subscribe(users => this.formationsSubject.next(users));
   }
 
-  createUser(formation: Formation): Observable<Formation> {
+  createFormation(formation: Formation): Observable<Formation> {
     return this.httpClient.post<Formation>(this.apiUrl, formation).pipe(
       tap(() => this.loadUsers()) // Refresh list after creation
     );
