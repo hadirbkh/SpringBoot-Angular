@@ -13,6 +13,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import { FormationModule } from './formation/formation.module';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,13 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatSidenavModule,
     UtilisateursModule,
+    FormationModule,
     MatPaginatorModule,
     HttpClientModule,
     MatListModule,
     MatDialogModule,
     MatButtonModule
-  
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,9 +18,9 @@ import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 
 @Component({
-  selector: 'app-utilisateurs',
-  templateUrl: './utilisateurs.component.html',
-  styleUrls: ['./utilisateurs.component.css']
+  selector: 'app-formations',
+  templateUrl: './formation.component.html',
+  styleUrls: ['./formation.component.css']
 })
 export class FormationComponent {
   utilisateur: Utilisateur[] = [];
@@ -61,7 +61,7 @@ export class FormationComponent {
 
   handleDelete(id: number) {
     if (this.isDeleting) return;
-    
+
     if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
       this.isDeleting = true;
       this.utilisateurService.deleteUtilisateur(id).subscribe({
