@@ -19,7 +19,7 @@ export class AddComponent implements OnInit {
     annee: 0,
     duree: 0,
     budget: 0,
-    domaine : {}
+    domaine : null
   } as Formation;
   domainesList! : Domaine[]
   constructor(private formationService: FormationService, private domaineService : DomaineService) {}
