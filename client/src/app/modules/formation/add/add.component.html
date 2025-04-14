@@ -24,8 +24,8 @@
 
       <mat-form-field style="width: 100%">
         <mat-label>Domaine</mat-label>
-        <mat-select>
-          <mat-option  *ngFor="let domaine of domainesList" [value]="domaine" [(ngModel)]="formation.domaine" >{{domaine.libelle}}</mat-option>
+        <mat-select [(ngModel)]="formation.domaine">
+          <mat-option  *ngFor="let domaine of domainesList" [value]="domaine"  >{{domaine.libelle}}</mat-option>
         </mat-select>
       </mat-form-field>
 
