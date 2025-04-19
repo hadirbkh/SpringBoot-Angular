@@ -2,32 +2,47 @@
   <div class="form">
     <mat-dialog-content>
       <h2 mat-dialog-title>Modifier une Formation </h2>
-      <mat-form-field style="width: 100%">
-        <mat-label>Titre</mat-label>
-        <input matInput [(ngModel)]="formation.titre" />
-      </mat-form-field>
+      <form #formationForm="ngForm" class="form">
 
-      <mat-form-field style="width: 100%">
-        <mat-label>Annee</mat-label>
-        <input matInput [(ngModel)]="formation.annee" />
-      </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <mat-label>Titre</mat-label>
+          <input matInput [(ngModel)]="formation.titre"  name="titre"  required #titre="ngModel" />
+          <mat-error *ngIf="titre.invalid && titre.touched">Le titre est requis</mat-error>
+        </mat-form-field>
 
-      <mat-form-field style="width: 100%">
-        <mat-label>Budget</mat-label>
-        <input matInput [(ngModel)]="formation.budget" />
-      </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <mat-label>Annee</mat-label>
+          <input type="number" matInput [(ngModel)]="formation.annee" name="annee" required pattern="^[0-9]{4}$" #annee="ngModel"/>
+          <mat-error *ngIf="annee.invalid && annee.touched"> Entrez une année valide (ex : 2025) </mat-error>
 
-      <mat-form-field style="width: 100%">
-        <mat-label>Duree</mat-label>
-        <input matInput [(ngModel)]="formation.duree" />
-      </mat-form-field>
+        </mat-form-field>
 
-      <mat-form-field style="width: 100%">
-        <mat-label>Domaine</mat-label>
-        <mat-select [(ngModel)]="formation.domaine" >
-          <mat-option  *ngFor="let domaine of domainesList" [value]="domaine" >{{domaine.libelle}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <mat-label>Budget</mat-label>
+          <input matInput type="number" [(ngModel)]="formation.budget" name="budget" required pattern="^[0-9]+$" #budget="ngModel"  />
+          <mat-error *ngIf="budget.invalid && budget.touched">Entrez un budget valide</mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%">
+          <mat-label>Duree</mat-label>
+          <input  type="number" matInput [(ngModel)]="formation.duree" name="duree" required pattern="^[0-9]+$" #duree="ngModel"  />
+          <mat-error *ngIf="duree.invalid && duree.touched">Entrez une durée valide</mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%">
+          <mat-label>Domaine</mat-label>
+          <mat-select [(ngModel)]="formation.domaine"  name="domaine" required #domaine="ngModel">
+            <mat-option  *ngFor="let domaine of domainesList" [value]="domaine"  >{{domaine.libelle}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="domaine.invalid && domaine.touched">Sélectionnez un domaine</mat-error>
+        </mat-form-field>
+
+
+      </form>
+
+
+
 
     </mat-dialog-content>
   </div>
@@ -35,7 +50,7 @@
 
 <mat-dialog-actions class="header-with-button">
   <button mat-button mat-dialog-close>Annuler</button>
-  <button mat-button mat-dialog-close cdkFocusInitial (click)="submit()">
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="submit()" [disabled]="formationForm.invalid">
     Modifier
   </button>
 </mat-dialog-actions>

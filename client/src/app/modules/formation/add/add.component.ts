@@ -31,7 +31,7 @@ export class AddComponent implements OnInit {
     )
   }
 
-  submitUser(){
+  submit(){
     this.formationService.createFormation(this.formation).subscribe((data: Formation) => {
       this.formation = data;
       console.log(data);

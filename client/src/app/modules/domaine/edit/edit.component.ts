@@ -17,7 +17,7 @@ export class EditComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: Domaine,private domaineService: DomaineService) {}
 
   ngOnInit() {
-    this.domaine=this.data;
+    this.domaine={...this.data};
   }
 
   clickEvent(event: MouseEvent) {

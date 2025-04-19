@@ -28,7 +28,7 @@ export class EditComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: Formation,private formationService: FormationService , private domaineService : DomaineService) {}
 
   ngOnInit() {
-    this.formation=this.data;
+    this.formation={...this.data};
     this.domaineService.domaines$.subscribe(
       (domaines)=>this.domainesList = domaines
     )

@@ -11,7 +11,7 @@
     height: 100%;
     width: 100%;
   }
-  
+
   .form {
     text-align: center;
   }
@@ -25,4 +25,7 @@
     align-items: center;
     width: 97%;
   }
-  
+
+.pwd-error{
+  font-size: 10px;
+}
