@@ -18,7 +18,7 @@ import com.app_gestion_formation.application_gestion_formation.models.Role;
 import com.app_gestion_formation.application_gestion_formation.repositories.RoleRepo;
 
 @RestController
-@RequestMapping("/role")
+@RequestMapping("/api/role")
 public class RoleController {
 
     @Autowired // to access the jpa repositry 

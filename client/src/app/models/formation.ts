@@ -6,7 +6,7 @@ export interface Formation {
   annee: number;
   duree: number;
   budget: number;
-  domaine: Domaine;
+  domaine: Domaine | null;
   participants: string[];
   capaciteMax: number
 }

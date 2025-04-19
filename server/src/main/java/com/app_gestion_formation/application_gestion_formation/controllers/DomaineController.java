@@ -18,7 +18,7 @@ import com.app_gestion_formation.application_gestion_formation.models.Domaine;
 import com.app_gestion_formation.application_gestion_formation.repositories.DomaineRepo;
 
 @RestController
-@RequestMapping("/domaine")
+@RequestMapping("/api/domaine")
 public class DomaineController{
 
     private final DomaineRepo domaineRepo;

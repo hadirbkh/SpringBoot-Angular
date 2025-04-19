@@ -22,8 +22,8 @@
 
             <mat-form-field style="width: 100%">
               <mat-label>Role</mat-label>
-              <mat-select>
-                <mat-option  *ngFor="let role of rolesList" [value]="role" [(ngModel)]="utilisateur.role" >{{role.nom}}</mat-option>
+              <mat-select [(ngModel)]="utilisateur.role">
+                <mat-option  *ngFor="let role of rolesList" [value]="role"  >{{role.nom}}</mat-option>
               </mat-select>
             </mat-form-field>
 
