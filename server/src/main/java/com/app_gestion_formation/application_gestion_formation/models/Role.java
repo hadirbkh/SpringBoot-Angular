@@ -15,13 +15,13 @@ public class Role {
     private int id;
      
     @Enumerated(EnumType.STRING)
-
     private RoleName nom;
+
     public enum RoleName {
-        UTILISATEUR,ADMIN, RESPONSABLE, 
+        UTILISATEUR,
+        ADMIN,
+        RESPONSABLE
     }
-
-
 }
 
 

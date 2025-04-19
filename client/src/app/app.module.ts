@@ -16,11 +16,13 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormationModule } from './modules/formation/formation.module';
 import { NgChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent
+    SidebarComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,9 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     NgChartsModule,
     UtilisateursModule,
-    FormationModule
+    FormationModule,
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

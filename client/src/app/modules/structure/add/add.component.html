@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Ajouter une structure</h2>
+
+<form [formGroup]="structureForm" (ngSubmit)="onSubmit()">
+    <mat-dialog-content>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Libellé</mat-label>
+            <input matInput formControlName="libelle" required>
+            <mat-error *ngIf="structureForm.get('libelle')?.hasError('required')">
+                Le libellé est requis
+            </mat-error>
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Annuler</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!structureForm.valid">
+            Ajouter
+        </button>
+    </mat-dialog-actions>
+</form> 
