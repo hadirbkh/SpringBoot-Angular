@@ -13,9 +13,8 @@ import com.app_gestion_formation.application_gestion_formation.repositories.Part
 import com.app_gestion_formation.application_gestion_formation.response.MessageResponse;
 
 import jakarta.transaction.Transactional;
-/*
-@Service
 
+@Service
 public class ParticipantService {
 
     @Autowired
@@ -32,15 +31,14 @@ public class ParticipantService {
         return participantRepository.findById(id).orElse(null);
     }
 
-   
     @Transactional
-	public MessageResponse addParticipant(Participant participant) {
-		boolean existe = participantRepository.existsByEmail(participant.getEmail());
-        if (existe){
-        	return new MessageResponse(false,"Echec !","Cet organisme existe déja !");   
+    public MessageResponse addParticipant(Participant participant) {
+        boolean existe = participantRepository.existsByEmail(participant.getEmail());
+        if (existe) {
+            return new MessageResponse(false, "Echec !", "Ce participant existe déjà avec cet email !");   
         } else {
-        	participantRepository.save(participant);
-        return new MessageResponse(true,"Succès","Opération réalisée avec succès.");
+            participantRepository.save(participant);
+            return new MessageResponse(true, "Succès", "Opération réalisée avec succès.");
         }
     }
 
@@ -62,9 +60,9 @@ public class ParticipantService {
         return null;
     }
 
-     public Participant inscrireParticipantAuxFormations(Long participantId, List<Integer> formationIds) {
-        Participant participant = participantRepository.findById(participantId);
-                // .orElseThrow(() -> new RuntimeException("Participant introuvable"));
+    public Participant inscrireParticipantAuxFormations(Long participantId, List<Integer> formationIds) {
+        Participant participant = participantRepository.findById(participantId)
+                .orElseThrow(() -> new RuntimeException("Participant introuvable"));
 
         List<Formation> formations = formationRepository.findAllById(formationIds);
 
@@ -72,15 +70,13 @@ public class ParticipantService {
 
         return participantRepository.save(participant);
     }
-    public Participant desinscrireFormations(Long participantId, List<Integer> formationIds) 
-    {
-        Optional participant = participantRepository.findById(participantId);
-                //.orElseThrow(() -> new RuntimeException("Participant introuvable"));
+
+    public Participant desinscrireFormations(Long participantId, List<Integer> formationIds) {
+        Participant participant = participantRepository.findById(participantId)
+                .orElseThrow(() -> new RuntimeException("Participant introuvable"));
     
         List<Formation> formations = formationRepository.findAllById(formationIds);
         participant.getFormations().removeAll(formations);
-    
         return participantRepository.save(participant);
     }
 }
-*/

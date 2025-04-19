@@ -15,7 +15,6 @@ public class Profil {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    // Libellé du profil (e.g., "informaticien (bac + 5)", "gestionnaire", etc.)
     private String libelle;
     
     

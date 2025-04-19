@@ -18,7 +18,7 @@ public class Domaine {
 
 
     @Column(nullable = false)
-    private String libelle; // Use an enum for roles
+    private String libelle; 
 
 
     public Integer getId() {

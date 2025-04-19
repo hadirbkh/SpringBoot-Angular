@@ -1,6 +1,6 @@
 package com.app_gestion_formation.application_gestion_formation.controllers;
 
-/*import java.util.List;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app_gestion_formation.application_gestion_formation.models.Participant;
 import com.app_gestion_formation.application_gestion_formation.response.MessageResponse;
 import com.app_gestion_formation.application_gestion_formation.services.ParticipantService;
- */
-/* 
+
 @RestController
 @RequestMapping("/participants")
 @CrossOrigin("*")
@@ -61,9 +60,9 @@ public class ParticipantController {
     }
 
     @PostMapping("/{id}/inscription")
-    public ResponseEntity<Participant> inscrireAuxFormations(@PathVariable int id,@RequestBody List<Integer> formationIds)
+    public ResponseEntity<Participant> inscrireAuxFormations(@PathVariable long id,@RequestBody List<Integer> formationIds)
     {
-        Participant updated = participantService.inscrireParticipantAuxFormations(id, formationIds);
+        Participant updated = participantService.inscrireParticipantAuxFormations( id, formationIds);
         return ResponseEntity.ok(updated);
     }
-}*/
+}

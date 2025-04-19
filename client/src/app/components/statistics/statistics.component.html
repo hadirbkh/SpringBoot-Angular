@@ -1,0 +1,130 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Formation Statistics Dashboard</h2>
+
+  <!-- Domain Statistics -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5>Formations by Domain</h5>
+        </div>
+        <div class="card-body">
+          <canvas baseChart
+                  [data]="domainChartData"
+                  [type]="'pie'"
+                  [options]="chartOptions">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Structure Statistics -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5>Participants by Structure</h5>
+        </div>
+        <div class="card-body">
+          <canvas baseChart
+                  [data]="structureChartData"
+                  [type]="'bar'"
+                  [options]="chartOptions">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Participation Rates -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Participation Rates by Formation</h5>
+        </div>
+        <div class="card-body">
+          <canvas baseChart
+                  [data]="participationChartData"
+                  [type]="'line'"
+                  [options]="chartOptions">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary Statistics -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5>Average Participation Rate</h5>
+        </div>
+        <div class="card-body">
+          <h2 class="text-center">{{ averageParticipationRate | number:'1.2-2' }}%</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h5>Duration Statistics</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <p><strong>Average Duration:</strong> {{ durationStats.averageDuration | number:'1.0-0' }} days</p>
+            </div>
+            <div class="col-md-3">
+              <p><strong>Min Duration:</strong> {{ durationStats.minDuration | number:'1.0-0' }} days</p>
+            </div>
+            <div class="col-md-3">
+              <p><strong>Max Duration:</strong> {{ durationStats.maxDuration | number:'1.0-0' }} days</p>
+            </div>
+            <div class="col-md-3">
+              <p><strong>Total Formations:</strong> {{ durationStats.totalFormations }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formations Near Capacity -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5>Formations Near Capacity</h5>
+          <div class="input-group" style="width: 200px;">
+            <input type="number" class="form-control" [(ngModel)]="threshold" min="0" max="100">
+            <button class="btn btn-primary" (click)="updateThreshold()">Update</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Formation Title</th>
+                  <th>Participants</th>
+                  <th>Capacity</th>
+                  <th>Participation Rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let formation of formationsNearCapacity">
+                  <td>{{ formation.titre }}</td>
+                  <td>{{ formation.inscrits }}</td>
+                  <td>{{ formation.capacite }}</td>
+                  <td>{{ formation.tauxParticipation | number:'1.2-2' }}%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

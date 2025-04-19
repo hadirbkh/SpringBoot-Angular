@@ -4,76 +4,59 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.app_gestion_formation.application_gestion_formation.models.Employeur;
-import com.app_gestion_formation.application_gestion_formation.repositories.EmployeurRepo;
+import com.app_gestion_formation.application_gestion_formation.services.EmployeurService;
 
 @RestController
 @RequestMapping("/emp")
 public class EmployeurController {
     
-    @Autowired // to access the jpa repositry 
-    EmployeurRepo employeeRepo;
+    private final EmployeurService employeurService;
 
-    public EmployeurController(EmployeurRepo employeeRepo) {
-        this.employeeRepo = employeeRepo;
+    @Autowired
+    public EmployeurController(EmployeurService employeurService) {
+        this.employeurService = employeurService;
     }
 
     @PostMapping
-    public Employeur addEmployee(@RequestBody Employeur employee){
-        employeeRepo.save(employee);
-        return employee;
+    public ResponseEntity<Employeur> addEmployee(@RequestBody Employeur employeur) {
+        Employeur savedEmployeur = employeurService.createEmployeur(employeur);
+        return ResponseEntity.ok(savedEmployeur);
     }
 
     @GetMapping
-    public List<Employeur> getEmployee(){
-        List<Employeur> employee = employeeRepo.findAll();
-        return employee;
+    public ResponseEntity<List<Employeur>> getEmployee() {
+        List<Employeur> employeurs = employeurService.getAllEmployeurs();
+        return ResponseEntity.ok(employeurs);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Employeur> getEmployeeById(@PathVariable Integer id) {
+        Employeur employeur = employeurService.getEmployeurById(id);
+        return ResponseEntity.ok(employeur);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Employeur> updateEmployee(
-            @PathVariable Integer id,// Extracts the id from the request URL
-            @RequestBody Employeur updated) {//Takes the new employee data sent in the request body and maps it to an Employee object
-        
-        return employeeRepo.findById(id)
-                .map(emp -> {
-                    emp.setNomemployeur(updated.getNomemployeur());
-                    return ResponseEntity.ok(employeeRepo.save(emp));
-                })
-                .orElse(ResponseEntity.notFound().build());
+            @PathVariable Integer id,
+            @RequestBody Employeur updated) {
+        Employeur employeur = employeurService.updateEmployeur(id, updated);
+        return ResponseEntity.ok(employeur);
     }
 
-    //deleeeeeete 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEmployee(@PathVariable Integer id) {  // Changed to Long
-        return employeeRepo.findById(id)
-                .map(employee -> {
-                    employeeRepo.delete(employee);
-                    return ResponseEntity.ok("Employee record deleted successfully!");
-                })
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<String> deleteEmployee(@PathVariable Integer id) {
+        employeurService.deleteEmployeur(id);
+        return ResponseEntity.ok("Employee record deleted successfully!");
     }
-// replace only the field that i give it 
+
     @PatchMapping("/{id}")
     public ResponseEntity<Employeur> patchEmployee(
             @PathVariable Integer id,
             @RequestBody Employeur updated) {
-        
-        return employeeRepo.findById(id)
-                .map(emp -> {
-                    emp.setNomemployeur(updated.getNomemployeur());
-                    return ResponseEntity.ok(employeeRepo.save(emp));
-                })
-                .orElse(ResponseEntity.notFound().build());
+        Employeur employeur = employeurService.updateEmployeur(id, updated);
+        return ResponseEntity.ok(employeur);
     }
 }

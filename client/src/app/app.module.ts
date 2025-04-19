@@ -14,6 +14,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { FormationModule } from './modules/formation/formation.module';
+import { NgChartsModule } from 'ng2-charts';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,14 +29,15 @@ import { FormationModule } from './modules/formation/formation.module';
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
-    UtilisateursModule,
-    FormationModule,
     MatPaginatorModule,
     HttpClientModule,
     MatListModule,
     MatDialogModule,
-    MatButtonModule
-
+    MatButtonModule,
+    FormsModule,
+    NgChartsModule,
+    UtilisateursModule,
+    FormationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

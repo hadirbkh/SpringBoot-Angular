@@ -26,7 +26,7 @@ public class Participant {
     private Structure structure;
 
     @ManyToOne
-    @JoinColumn(name = "idProfil", nullable = false)
+    @JoinColumn(name = "idProfil", nullable = true)
     private Profil profil;
 
     private String email;
