@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ApplicationGestionFormationApplication<application_gestion_formation>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.app_gestion_formation.application_gestion_formation.ApplicationGestionFormationApplication",
+            "projectName": "application_gestion_formation",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

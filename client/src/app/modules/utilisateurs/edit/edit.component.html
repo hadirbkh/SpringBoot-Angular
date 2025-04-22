@@ -1,0 +1,48 @@
+<div class="form-container">
+    <div class="form" >
+        <mat-dialog-content >
+            <h2 mat-dialog-title>Modifier un utilisateur</h2>
+
+            <form #userForm="ngForm" class="form">
+
+              <mat-form-field style="width:100%;">
+                <mat-label>Login</mat-label>
+                <input matInput [(ngModel)]="utilisateur.login" name="login"  required #login="ngModel">
+                <mat-error *ngIf="login.invalid && login.touched">Le login est requis</mat-error>
+              </mat-form-field>
+
+              <mat-form-field style="width:100%;" >
+                  <mat-label>Enter your password</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="utilisateur.password" name="password"   pattern="^(?=.*[A-Z])(?=.*\d).{6,}$" #password="ngModel"/>
+                  <button
+                  mat-icon-button
+                  matSuffix
+                  (click)="clickEvent($event)"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide"
+                  >
+                  <mat-icon>{{ hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                  <mat-error *ngIf="password.invalid && password.touched" class="pwd-error"> Le mot de passe doit contenir au moins 6 caractères,  une majuscule et un chiffre </mat-error>
+              </mat-form-field>
+
+              <mat-form-field style="width: 100%">
+                <mat-label>Role</mat-label>
+                <mat-select [(ngModel)]="utilisateur.role"  name="role" required #role="ngModel">
+                  <mat-option  *ngFor="let role of rolesList" [value]="role" >{{role.nom}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="role.invalid && role.touched">Sélectionnez un domaine</mat-error>
+              </mat-form-field>
+
+            </form>
+
+
+
+        </mat-dialog-content>
+</div>
+</div>
+
+<mat-dialog-actions class="header-with-button" >
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="submitUser()" [disabled]="userForm.invalid">Modifier</button>
+</mat-dialog-actions>

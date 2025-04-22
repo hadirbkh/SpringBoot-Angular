@@ -1,0 +1,23 @@
+<mat-card class="mat-card" *ngIf="structure">
+    <mat-card-header>
+        <mat-card-title>Détails de la structure</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="details-container">
+            <p><strong>ID:</strong> {{structure.id}}</p>
+            <p><strong>Libellé:</strong> {{structure.libelle}}</p>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" routerLink="..">Retour</button>
+    </mat-card-actions>
+</mat-card>
+
+<mat-card class="mat-card" *ngIf="!structure">
+    <mat-card-content>
+        <p>Structure non trouvée</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" routerLink="..">Retour</button>
+    </mat-card-actions>
+</mat-card> 

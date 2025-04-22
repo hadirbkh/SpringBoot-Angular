@@ -1,0 +1,17 @@
+.mat-card {
+    margin: 20px;
+    padding: 20px;
+}
+
+.details-container {
+    margin: 20px 0;
+}
+
+.details-container p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.mat-card-actions {
+    padding: 0 20px 20px;
+} 
