@@ -18,8 +18,6 @@ public class Formateur {
     private String prenom;
     private String email;
     private int tel;
-
-    // e.g., 1 for "interne" or 2 for "externe" (or other numeric representation)
     private TypeFormateur type;
 
     @ManyToOne

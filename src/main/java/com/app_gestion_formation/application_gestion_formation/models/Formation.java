@@ -34,6 +34,6 @@ public class Formation {
     @ManyToMany(mappedBy = "formations")
     @JsonIgnore
 
-    private List<Participant> participants = new ArrayList<>();
+    private List<Participant> participants;
 }
 

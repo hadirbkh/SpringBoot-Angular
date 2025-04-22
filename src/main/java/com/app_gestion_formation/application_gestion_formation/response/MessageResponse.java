@@ -1,6 +1,5 @@
 package com.app_gestion_formation.application_gestion_formation.response;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data

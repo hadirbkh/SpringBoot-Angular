@@ -89,4 +89,11 @@ public class FormateurController {
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('UTILISATEUR')")
+    public ResponseEntity<Formateur> findFormateurById(@PathVariable Integer id) {
+    return formateurRepository.findById(id)
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> ResponseEntity.notFound().build());
+}
 }

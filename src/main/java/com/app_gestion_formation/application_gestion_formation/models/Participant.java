@@ -4,6 +4,8 @@ package com.app_gestion_formation.application_gestion_formation.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,7 +30,6 @@ public class Participant {
     @ManyToOne
     @JoinColumn(name = "idProfil", nullable = false)
     private Profil profil;
-
     private String email;
     private int tel;
 
@@ -38,5 +39,6 @@ public class Participant {
         joinColumns = @JoinColumn(name = "participant_id"),
         inverseJoinColumns = @JoinColumn(name = "formation_id")
     )
-    private List<Formation> formations = new ArrayList<>();
+    @JsonIgnore
+    private List<Formation> formations ;
 }

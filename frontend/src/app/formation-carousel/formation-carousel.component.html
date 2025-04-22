@@ -1,0 +1,21 @@
+<div class="carousel-container">
+    <button mat-icon-button (click)="previous()" [disabled]="currentIndex === 0">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+  
+    <ng-container *ngFor="let formation of visibleFormations">
+        <mat-card class="formation-card">
+          <img mat-card-image [src]="formation.image" alt="Image Formation">
+          <mat-card-title>{{ formation.titre }}</mat-card-title>
+          <mat-card-content>
+            <p>{{ formation.description }}</p>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+      
+  
+    <button mat-icon-button (click)="next()" [disabled]="currentIndex + visibleCount >= formations.length">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+  

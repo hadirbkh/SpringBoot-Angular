@@ -1,0 +1,21 @@
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .cards-wrapper {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .formation-card {
+    width: 250px;
+    flex-shrink: 0;
+  }
+  
+  button[disabled] {
+    opacity: 0.5;
+  }
+  

@@ -21,7 +21,6 @@ import com.app_gestion_formation.application_gestion_formation.services.Particip
 
 @RestController
 @RequestMapping("/participants")
-@CrossOrigin("*")
 public class ParticipantController {
 
     @Autowired
