@@ -10,11 +10,13 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
      
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false, unique = true)
     private RoleName nom;
 
     public enum RoleName {
@@ -23,8 +25,3 @@ public class Role {
         RESPONSABLE
     }
 }
-
-
-
-
-

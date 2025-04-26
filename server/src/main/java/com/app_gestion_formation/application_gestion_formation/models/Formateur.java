@@ -18,6 +18,7 @@ public class Formateur {
     private String prenom;
     private String email;
     private int tel;
+
     private TypeFormateur type;
 
     @ManyToOne

@@ -1,0 +1,32 @@
+:host {
+  height: 100%;
+  margin: 0;
+  background: #f7f7f7;
+  font-family: 'Roboto', sans-serif;
+}
+
+.full-page-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.login-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+.button{
+  background-color: rgb(82, 163, 255);
+  color: black;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}

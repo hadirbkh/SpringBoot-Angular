@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import { WelcomeComponent } from './views/welcome-component/welcome.component';
+import { RoleGuard } from './services/role.guard';
 
 
 const routes: Routes = [
-  { path: 'utilisateurs', loadChildren: () => import('./modules/utilisateurs/utilisateurs.module').then(m => m.UtilisateursModule) },
+  { path: '', component : WelcomeComponent },
+  { path: 'utilisateurs',  canActivate: [RoleGuard], data: { role: 'ADMIN' }, loadChildren: () => import('./modules/utilisateurs/utilisateurs.module').then(m => m.UtilisateursModule) },
   { path : "formations" , loadChildren: () => import('./modules/formation/formation.module').then(m => m.FormationModule)},
   { path : "domaines" , loadChildren: () => import('./modules/domaine/domaine.module').then(m => m.DomaineModule)},
   { path : "structures" , loadChildren: () => import('./modules/structure/structure.module').then(m => m.StructureModule)},
