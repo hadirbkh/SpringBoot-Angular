@@ -39,10 +39,7 @@ public class Participant {
         joinColumns = @JoinColumn(name = "participant_id"),
         inverseJoinColumns = @JoinColumn(name = "formation_id")
     )
-<<<<<<< HEAD:src/main/java/com/app_gestion_formation/application_gestion_formation/models/Participant.java
     @JsonIgnore
-    private List<Formation> formations ;
-=======
     private List<Formation> formations = new ArrayList<>();
 
     public Participant orElse(Object object) {
@@ -50,5 +47,4 @@ public class Participant {
         throw new UnsupportedOperationException("Unimplemented method 'orElse'");
     }
 
->>>>>>> 18986bc9edfa02ab1da59d675a73f50055c65ad3:server/src/main/java/com/app_gestion_formation/application_gestion_formation/models/Participant.java
 }
