@@ -42,6 +42,13 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration  configuration) throws Exception {
         return configuration.getAuthenticationManager() ;
     }
+
+
+    // @Bean
+    // public AuthenticationManager authenticationManager(AuthenticationProvider provider) {
+    //     return new ProviderManager(provider);
+    // }
+
     @Bean 
     public AuthenticationProvider authenticationProvider() { // Changed method name to lowercase
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -50,10 +57,6 @@ public class SecurityConfig {
         return provider;
     }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationProvider provider) {
-        return new ProviderManager(provider);
-    }
     @Bean
 public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration config = new CorsConfiguration();
