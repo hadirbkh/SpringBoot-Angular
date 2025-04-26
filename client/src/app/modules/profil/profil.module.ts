@@ -14,14 +14,24 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ProfilComponent } from './profil.component';
 import { ProfilRoutingModule } from './profil-routing.module';
 import { ProfilService } from '../../services/profil.service';
+import { ViewComponent } from './view/view.component';
+import { EditComponent } from './edit/edit.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AddComponent } from './add/add.component';
 
 @NgModule({
   declarations: [
-    ProfilComponent
+    ProfilComponent,
+    AddComponent,
+    ViewComponent,
+    EditComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +50,9 @@ import { ProfilService } from '../../services/profil.service';
     MatSelectModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDividerModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     ProfilService

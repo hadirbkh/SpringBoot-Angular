@@ -7,6 +7,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfilService } from '../../services/profil.service';
 import { Profil } from '../../models/profil';
+import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
 
 @Component({
   selector: 'app-profil',
@@ -25,7 +27,8 @@ export class ProfilComponent {
 
   constructor(
     private profilService: ProfilService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {
     this.profilService.profils$.subscribe(profils => {
       this.profils = profils;
@@ -91,13 +94,20 @@ export class ProfilComponent {
     });
   }
 
-  readonly dialog = inject(MatDialog);
-
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    // Implement add dialog
+    this.dialog.open(AddComponent, {
+      width: '500px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
   openUpdateDialog(profil: Profil): void {
-    // Implement edit dialog
+    this.dialog.open(EditComponent, {
+      width: '500px',
+      enterAnimationDuration: '0ms',
+      exitAnimationDuration: '0ms',
+      data: profil
+    });
   }
 } 

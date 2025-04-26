@@ -29,4 +29,89 @@ table {
 
 .mat-row.selected {
   background-color: #e3f2fd;
+}
+
+.mat-card{
+    margin:20px;
+}
+.count-card{
+    width: 24%;
+    margin: 5px;
+    padding: 20px;
+}
+
+.bg-info{
+    background-color: lightgreen;
+}
+.bg-success{
+    background-color: rgb(228, 39, 54);
+}
+.bg-warning{
+    background-color: rgb(236, 195, 11);
+}
+.bg-primary{
+    background-color: rgb(42, 150, 192);
+}
+.icon-color{
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+.success-snackbar {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+  
+.error-snackbar {
+    background-color: #F44336; /* Red */
+    color: white;
+}
+  
+.icon-color:hover {
+    opacity: 0.8;
+}
+  
+/* Style for your cards */
+.count-card {
+    margin: 0 10px;
+    padding: 15px;
+    flex: 1;
+}
+  
+.count-card mat-card-title {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+  
+.count-card mat-card-content {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.green-snackbar {
+    background-color: #4CAF50 !important;
+    color: white !important;
+    
+    /* Size adjustments */
+    min-width: 300px !important;       /* Minimum width */
+    min-height: 60px !important;       /* Minimum height */
+    padding: 20px 24px !important;     /* Internal spacing */
+    font-size: 16px !important;        /* Larger text */
+    
+    /* Optional rounded corners */
+    border-radius: 8px !important;
+    
+    /* For top positioning (if needed) */
+    margin-top: 20px !important;
+}
+.header-with-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 97%;
+}
+  
+.button{
+    background-color: rgb(82, 163, 255);
+    color: black;
 } 
