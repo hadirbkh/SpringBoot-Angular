@@ -1,14 +1,14 @@
-<mat-toolbar class="hearder-toolbar">
+
+<ng-container *ngIf="loggedUser ; else loginTemplate" >
+  <mat-toolbar class="hearder-toolbar">
     <button mat-icon-button (click)="toggleSidebar()"class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon >menu</mat-icon>
     </button>
-    <span class="app-title">My App</span>
+    <a class="app-title" >My App</a>
     <span class="header-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
+
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logout()" >
+      <mat-icon>logout</mat-icon>
     </button>
   </mat-toolbar>
   <mat-drawer-container class="content-container">
@@ -19,4 +19,7 @@
         <router-outlet></router-outlet>
     </mat-drawer-content>
   </mat-drawer-container>
-
+</ng-container>
+<ng-template #loginTemplate>
+  <login-component></login-component>
+</ng-template>

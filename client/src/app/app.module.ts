@@ -17,12 +17,16 @@ import { FormationModule } from './modules/formation/formation.module';
 import { NgChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import { LoginComponent } from './views/login-component/login.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -40,8 +44,8 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
     NgChartsModule,
     UtilisateursModule,
     FormationModule,
-    
-    
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
