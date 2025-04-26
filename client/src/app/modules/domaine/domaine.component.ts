@@ -51,6 +51,12 @@ export class DomaineComponent {
     this.dataSource.sort = this.sort;
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
  /* loadUsers() {
     this.utilisateurService.getUsers().subscribe((data: Utilisateur[]) => {
       this.utilisateur = data;

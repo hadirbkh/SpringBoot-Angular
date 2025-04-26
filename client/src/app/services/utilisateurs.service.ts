@@ -33,6 +33,9 @@ export class UtilisateursService {
   getUserById(id: number): Observable<Utilisateur> {
     return this.httpClient.get<Utilisateur>(`${this.apiUrl}/${id}`);
   }
+  getUserByLogin(login: string): Observable<Utilisateur> {
+    return this.httpClient.get<Utilisateur>(`${this.apiUrl}/getByLogin/${login}`);
+  }
 
   updateUser(utilisateur: Utilisateur): Observable<Utilisateur> {
     return this.httpClient.put<Utilisateur>(`${this.apiUrl}/${utilisateur.id}`, utilisateur).pipe(
@@ -45,5 +48,5 @@ export class UtilisateursService {
       finalize(() => this.loadUsers()) // Will run on success or error
     );
   }
-  
+
 }

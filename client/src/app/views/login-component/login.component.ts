@@ -19,6 +19,8 @@ export class LoginComponent {
     }
   } as Utilisateur;
 
+  error = false
+
   constructor(private authService : AuthService) { }
 
   clickEvent(event: MouseEvent) {
@@ -26,9 +28,26 @@ export class LoginComponent {
     event.stopPropagation();
   }
 
-  logUser (){
-    this.authService.login(this.user)
+  logUser() {
+    this.authService.login(this.user).subscribe({
+      next: (response) => {
+        if (response.token) {
+          this.authService.setToken(response.token);
+          this.authService.getUser(this.user);
+        } else {
+          console.log("login error");
+        }
+      },
+      error: (err) => {
+        if (err.status === 401) {
+          this.error = true
+         } else {
+          console.log("An error occurred:", err);
+        }
+      }
+    });
   }
+
 
 
 }

@@ -1,19 +1,14 @@
-import { Component, inject, ViewChild } from '@angular/core';
-import { Utilisateur } from '../../models/utilisateur';
-import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { UtilisateursService } from '../../services/utilisateurs.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, inject, ViewChild } from '@angular/core';
 import {
-  MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-  MatDialogTitle,
+  MatDialog
 } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Utilisateur } from '../../models/utilisateur';
+import { UtilisateursService } from '../../services/utilisateurs.service';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 
@@ -32,6 +27,7 @@ export class UtilisateursComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+
   constructor(
     private utilisateurService: UtilisateursService,
     private snackBar: MatSnackBar
@@ -45,15 +41,24 @@ export class UtilisateursComponent {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch(property) {
+        case 'role': return item.role?.nom || ""
+        default: return item[property as keyof Utilisateur] as string|number;
+      }
+    };
+
+    this.dataSource.filterPredicate = (data: Utilisateur, filter: string) => {
+      const dataStr = (data.login + ' ' + (data.role?.nom || '')).toLowerCase();
+      return dataStr.includes(filter.trim().toLowerCase());
+    };
   }
 
- /* loadUsers() {
-    this.utilisateurService.getUsers().subscribe((data: Utilisateur[]) => {
-      this.utilisateur = data;
-      this.dataSource.data = this.utilisateur;
-    });
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  */
+
 
   SelectHandler(row: Utilisateur) {
     this.selection.toggle(row as never);
