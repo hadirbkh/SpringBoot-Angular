@@ -1,10 +1,7 @@
 package com.app_gestion_formation.application_gestion_formation.config;
 
-<<<<<<< HEAD:src/main/java/com/app_gestion_formation/application_gestion_formation/config/SecurityConfig.java
 import java.util.List;
-=======
 import java.util.Arrays;
->>>>>>> 18986bc9edfa02ab1da59d675a73f50055c65ad3:server/src/main/java/com/app_gestion_formation/application_gestion_formation/config/SecurityConfig.java
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,42 +10,42 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider; // Add this import
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.app_gestion_formation.application_gestion_formation.filter.JwtAuthenticationFilter;
+import com.app_gestion_formation.application_gestion_formation.services.UserDetailsServiceImp;
 import com.app_gestion_formation.application_gestion_formation.services.UtilisateurService;
 
 @Configuration
 public class SecurityConfig {
+    private final UserDetailsServiceImp userDetailsServiceImp;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    private final UtilisateurService utilisateurService;
-
-    @Autowired // Add Autowired for dependency injection
-    public SecurityConfig(UtilisateurService utilisateurService) {
-        this.utilisateurService = utilisateurService;
+    public SecurityConfig(UserDetailsServiceImp userDetailsServiceImp,JwtAuthenticationFilter jwtAuthenticationFilter){
+        this.userDetailsServiceImp=userDetailsServiceImp;
+        this.jwtAuthenticationFilter=jwtAuthenticationFilter;
     }
-
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
     @Bean
-    public UserDetailsService userDetailsService() {
-        return utilisateurService;
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration  configuration) throws Exception {
+        return configuration.getAuthenticationManager() ;
     }
-    
-    
     @Bean 
     public AuthenticationProvider authenticationProvider() { // Changed method name to lowercase
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(utilisateurService);
+        provider.setUserDetailsService(userDetailsServiceImp);
         provider.setPasswordEncoder(passwordEncoder()); 
         return provider;
     }
@@ -71,12 +68,14 @@ public CorsConfigurationSource corsConfigurationSource() {
     source.registerCorsConfiguration("/**", config);
     return source;
 }
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.cors().configurationSource(corsConfigurationSource());
+    // @Bean
+    // public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    //     http.cors().configurationSource(corsConfigurationSource());}
 
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors() 
+            .cors().configurationSource(corsConfigurationSource())
             .and()
             .csrf().disable()
             .authorizeHttpRequests(auth -> auth
@@ -89,10 +88,10 @@ public CorsConfigurationSource corsConfigurationSource() {
                 .requestMatchers("/domaine/**").permitAll()       
                 .authenticated()
                 .anyRequest().authenticated()*/            
-            )
+            ).userDetailsService(userDetailsServiceImp)
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Ensure stateless authentication (for REST APIs)
-            )
+            ).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
             .authenticationProvider(authenticationProvider())
             .httpBasic() // Enable basic authentication
             .and()
@@ -102,17 +101,5 @@ public CorsConfigurationSource corsConfigurationSource() {
         return http.build();
     }
 
-    @Bean
-public CorsConfigurationSource corsConfigurationSource() {
-    CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // Angular origin
-    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Allowed HTTP methods
-    configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Allowed headers
-    configuration.setAllowCredentials(true); // If you're using cookies or HTTP basic auth
-
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", configuration);
-    return source;
-}
 
 }
