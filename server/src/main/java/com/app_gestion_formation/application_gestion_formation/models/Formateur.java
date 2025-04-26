@@ -18,10 +18,6 @@ public class Formateur {
     private String prenom;
     private String email;
     private int tel;
-<<<<<<< HEAD:src/main/java/com/app_gestion_formation/application_gestion_formation/models/Formateur.java
-=======
-
->>>>>>> 18986bc9edfa02ab1da59d675a73f50055c65ad3:server/src/main/java/com/app_gestion_formation/application_gestion_formation/models/Formateur.java
     private TypeFormateur type;
 
     @ManyToOne

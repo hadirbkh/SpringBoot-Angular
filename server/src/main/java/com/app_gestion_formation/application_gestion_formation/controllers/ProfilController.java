@@ -14,7 +14,7 @@ import com.app_gestion_formation.application_gestion_formation.services.ProfilSe
 
 @RestController
 @RequestMapping("/api/profils")
-@CrossOrigin("*")
+
 public class ProfilController {
 
     @Autowired

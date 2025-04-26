@@ -1,0 +1,40 @@
+.mat-card {
+  margin-bottom: 20px;
+}
+
+.header-with-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.count-card {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+.bg-success {
+  background-color: #4caf50;
+  color: white;
+}
+
+table {
+  width: 100%;
+}
+
+.icon-color {
+  color: #3f51b5;
+  cursor: pointer;
+}
+
+.green-snackbar {
+  background: #4caf50;
+  color: white;
+}
+
+.error-snackbar {
+  background: #f44336;
+  color: white;
+} 

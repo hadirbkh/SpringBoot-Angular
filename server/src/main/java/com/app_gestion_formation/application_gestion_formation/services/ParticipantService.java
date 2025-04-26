@@ -38,15 +38,13 @@ public class ParticipantService {
     }
 
     @Transactional
-    public MessageResponse addParticipant(Participant participant) {
-        boolean existe = participantRepository.existsByEmail(participant.getEmail());
-        if (existe) {
-            return new MessageResponse(false, "Echec !", "Ce participant existe déjà avec cet email !");   
-        } else {
-            participantRepository.save(participant);
-            return new MessageResponse(true, "Succès", "Opération réalisée avec succès.");
-        }
+public Participant addParticipant(Participant participant) {
+    boolean exists = participantRepository.existsByEmail(participant.getEmail());
+    if (exists) {
+        throw new RuntimeException("Ce participant existe déjà avec cet email !");
     }
+    return participantRepository.save(participant);
+}
 
     public void deleteParticipant(Long id) {
         participantRepository.deleteById(id);
@@ -66,16 +64,36 @@ public class ParticipantService {
         return null;
     }
 
-    public Participant inscrireParticipantAuxFormations(Long participantId, List<Integer> formationIds) {
-        Participant participant = participantRepository.findById(participantId)
-                .orElseThrow(() -> new RuntimeException("Participant introuvable"));
+    @Transactional
+public Participant inscrireParticipantAuxFormations(Long participantId, List<Integer> formationIds) {
+    // Fetch the participant or throw an exception if not found
+    Participant participant = participantRepository.findById(participantId)
+            .orElseThrow(() -> new RuntimeException("Participant introuvable"));
 
-        List<Formation> formations = formationRepository.findAllById(formationIds);
+    // Fetch the formations by IDs
+    List<Formation> formations = formationRepository.findAllById(formationIds);
 
-        participant.getFormations().addAll(formations);
-
-        return participantRepository.save(participant);
+    // Validate that all formation IDs exist
+    if (formations.size() != formationIds.size()) {
+        throw new RuntimeException("Certaines formations n'existent pas");
     }
+
+    // Add the participant to each formation and vice versa
+    for (Formation formation : formations) {
+        if (!formation.getParticipants().contains(participant)) {
+            formation.getParticipants().add(participant); // Add participant to formation
+        }
+        if (!participant.getFormations().contains(formation)) {
+            participant.getFormations().add(formation); // Add formation to participant
+        }
+    }
+
+    // Save the updated formations
+    formationRepository.saveAll(formations);
+
+    // Save and return the updated participant
+    return participantRepository.save(participant);
+}
 
     public Participant desinscrireFormations(Long participantId, List<Integer> formationIds) {
         Participant participant = participantRepository.findById(participantId)

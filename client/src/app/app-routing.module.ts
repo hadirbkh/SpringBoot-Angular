@@ -8,7 +8,9 @@ const routes: Routes = [
   { path : "formations" , loadChildren: () => import('./modules/formation/formation.module').then(m => m.FormationModule)},
   { path : "domaines" , loadChildren: () => import('./modules/domaine/domaine.module').then(m => m.DomaineModule)},
   { path : "structures" , loadChildren: () => import('./modules/structure/structure.module').then(m => m.StructureModule)},
+  { path : "participants" , loadChildren: () => import('./modules/participant/participant.module').then(m => m.ParticipantModule)},
   { path: 'statistics', component: StatisticsComponent },
+  {path : "profils" , loadChildren: () => import('./modules/profil/profil.module').then(m => m.ProfilModule)}
 ];
 
 @NgModule({

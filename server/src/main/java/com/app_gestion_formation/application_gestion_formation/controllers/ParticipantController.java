@@ -25,6 +25,11 @@ public class ParticipantController {
 
     @Autowired
     private ParticipantService participantService;
+    @PostMapping
+    public ResponseEntity<Participant> createParticipant(@RequestBody Participant participant) {
+        Participant createdParticipant = participantService.addParticipant(participant);
+        return ResponseEntity.ok(createdParticipant); // Ensure the response includes the ID
+    }
 
     @GetMapping
     public List<Participant> getAllParticipants() {
@@ -36,14 +41,7 @@ public class ParticipantController {
         Participant participant = participantService.getParticipantById(id);
         return participant != null ? ResponseEntity.ok(participant) : ResponseEntity.notFound().build();
     }
-
-    @PostMapping
-    @PreAuthorize("hasRole('UTILISATEUR') ")
-
-    public MessageResponse addParticipant(@RequestBody Participant participant) {
-        return participantService.addParticipant(participant);
-    }
-
+    
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('UTILISATEUR') ")
 

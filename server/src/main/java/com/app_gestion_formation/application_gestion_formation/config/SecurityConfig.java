@@ -1,11 +1,8 @@
 package com.app_gestion_formation.application_gestion_formation.config;
 
-<<<<<<< HEAD:src/main/java/com/app_gestion_formation/application_gestion_formation/config/SecurityConfig.java
-import java.util.List;
-=======
-import java.util.Arrays;
->>>>>>> 18986bc9edfa02ab1da59d675a73f50055c65ad3:server/src/main/java/com/app_gestion_formation/application_gestion_formation/config/SecurityConfig.java
 
+import java.util.List;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -102,17 +99,6 @@ public CorsConfigurationSource corsConfigurationSource() {
         return http.build();
     }
 
-    @Bean
-public CorsConfigurationSource corsConfigurationSource() {
-    CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // Angular origin
-    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Allowed HTTP methods
-    configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Allowed headers
-    configuration.setAllowCredentials(true); // If you're using cookies or HTTP basic auth
-
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", configuration);
-    return source;
-}
+ 
 
 }

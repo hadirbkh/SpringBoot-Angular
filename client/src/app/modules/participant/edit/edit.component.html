@@ -1,0 +1,62 @@
+<div class="form-container">
+  <div class="form">
+    <mat-dialog-content>
+      <h2 mat-dialog-title>Modifier un Participant</h2>
+
+      <form #participantForm="ngForm" class="form">
+
+        <mat-form-field style="width: 100%">
+          <mat-label>Nom</mat-label>
+          <input matInput [(ngModel)]="participant.nom" name="nom" required #nom="ngModel" />
+          <mat-error *ngIf="nom.invalid && nom.touched">Le nom est requis</mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%">
+          <mat-label>Prénom</mat-label>
+          <input matInput [(ngModel)]="participant.prenom" name="prenom" required #prenom="ngModel" />
+          <mat-error *ngIf="prenom.invalid && prenom.touched">Le prénom est requis</mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%">
+          <mat-label>Email</mat-label>
+          <input matInput [(ngModel)]="participant.email" name="email" required #email="ngModel" type="email" />
+          <mat-error *ngIf="email.invalid && email.touched">L'email est requis</mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%">
+          <mat-label>Téléphone</mat-label>
+          <input matInput [(ngModel)]="participant.tel" name="tel" required #tel="ngModel" type="number" />
+          <mat-error *ngIf="tel.invalid && tel.touched">Le téléphone est requis</mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%">
+          <mat-label>Profil</mat-label>
+          <mat-select [(ngModel)]="selectedProfil" name="profil" required #profil="ngModel">
+            <mat-option *ngFor="let profil of profils" [value]="profil.id">
+              {{profil.libelle}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="profil.invalid && profil.touched">Le profil est requis</mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%">
+          <mat-label>Formations</mat-label>
+          <mat-select [(ngModel)]="selectedFormations" name="formations" multiple>
+            <mat-option *ngFor="let formation of formations" [value]="formation.id">
+              {{formation.titre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </form>
+
+    </mat-dialog-content>
+  </div>
+</div>
+
+<mat-dialog-actions class="header-with-button">
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="submit()" [disabled]="participantForm.invalid">
+    Modifier
+  </button>
+</mat-dialog-actions> 

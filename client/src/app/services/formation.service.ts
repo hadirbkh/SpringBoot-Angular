@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Formation } from '../models/formation';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormationService {
 
-  private apiUrl = "http://localhost:8080/api/formation";
+  private apiUrl = `${environment.apiUrl}/api/formation`;
 
   private formationsSubject = new BehaviorSubject<Formation[]>([]);
   formations$ = this.formationsSubject.asObservable(); // Expose as observable
@@ -21,25 +22,34 @@ export class FormationService {
   // Load and emit current list
   private loadFormations() {
     this.httpClient.get<Formation[]>(this.apiUrl)
-      .subscribe(users => this.formationsSubject.next(users));
+      .subscribe(
+        formations => {
+          this.formationsSubject.next(formations);
+        },
+        error => {
+          console.error('Error loading formations:', error);
+        }
+      );
+  }
+
+  getFormations(): Observable<Formation[]> {
+    return this.httpClient.get<Formation[]>(this.apiUrl);
+  }
+
+  getFormationById(id: number): Observable<Formation> {
+    return this.httpClient.get<Formation>(`${this.apiUrl}/${id}`);
   }
 
   createFormation(formation: Formation): Observable<Formation> {
-    return this.httpClient.post<Formation>(this.apiUrl, formation).pipe(
-      tap(() => this.loadFormations()) // Refresh list after creation
-    );
+    return this.httpClient.post<Formation>(this.apiUrl, formation);
   }
 
   updateFormation(formation: Formation): Observable<Formation> {
-    return this.httpClient.put<Formation>(`${this.apiUrl}/${formation.id}`, formation).pipe(
-      tap(() => this.loadFormations()) // Refresh list after update
-    );
+    return this.httpClient.put<Formation>(`${this.apiUrl}/${formation.id}`, formation);
   }
 
-  deleteFormation(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.apiUrl}/${id}`).pipe(
-      finalize(() => this.loadFormations()) // Will run on success or error
-    );
+  deleteFormation(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.apiUrl}/${id}`);
   }
 
 }

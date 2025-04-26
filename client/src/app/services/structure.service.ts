@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Structure } from '../models/structure';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StructureService {
-  private apiUrl = 'http://localhost:8080/api/structures';
+  private apiUrl = `${environment.apiUrl}/api/structures`;
   private structuresSubject = new BehaviorSubject<Structure[]>([]);
   structures$ = this.structuresSubject.asObservable();
 
@@ -15,10 +16,15 @@ export class StructureService {
     this.loadStructures();
   }
 
-  private loadStructures() {
-    this.http.get<Structure[]>(this.apiUrl).subscribe(structures => {
-      this.structuresSubject.next(structures);
-    });
+  loadStructures() {
+    this.http.get<Structure[]>(this.apiUrl).subscribe(
+      structures => {
+        this.structuresSubject.next(structures);
+      },
+      error => {
+        console.error('Error loading structures:', error);
+      }
+    );
   }
 
   getStructures(): Observable<Structure[]> {
@@ -30,20 +36,14 @@ export class StructureService {
   }
 
   createStructure(structure: Structure): Observable<Structure> {
-    return this.http.post<Structure>(this.apiUrl, structure).pipe(
-      tap(() => this.loadStructures())
-    );
+    return this.http.post<Structure>(this.apiUrl, structure);
   }
 
   updateStructure(id: number, structure: Structure): Observable<Structure> {
-    return this.http.put<Structure>(`${this.apiUrl}/${id}`, structure).pipe(
-      tap(() => this.loadStructures())
-    );
+    return this.http.put<Structure>(`${this.apiUrl}/${id}`, structure);
   }
 
-  deleteStructure(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
-      tap(() => this.loadStructures())
-    );
+  deleteStructure(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 } 
