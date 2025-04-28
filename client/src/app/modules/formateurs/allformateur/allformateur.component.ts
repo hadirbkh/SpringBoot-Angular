@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { Formateur } from '../../../entities/formateur';
+import { Formateur } from '../../../models/formateur';
 import { FormateurService } from '../../../services/formateur/formateur.service';
 import { ModalService } from '../../../services/modal.service';
 
@@ -11,7 +11,7 @@ import { ModalService } from '../../../services/modal.service';
   standalone: true,
   imports: [RouterOutlet, RouterLink, CommonModule],
   templateUrl: './allformateur.component.html',
-  styleUrl: './allformateur.component.css'
+  styleUrls: ['./allformateur.component.css']
 })
 export class AllformateurComponent implements OnInit {
   formateurs: Formateur[] = [];

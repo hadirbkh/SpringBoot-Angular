@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Modifier l'Employeur</h2>
+
+  <form [formGroup]="employeurForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Nom de l'employeur</mat-label>
+      <input matInput formControlName="nomemployeur" placeholder="Entrez le nom de l'employeur">
+      <mat-error *ngIf="employeurForm.get('nomemployeur')?.hasError('required')">
+        Le nom de l'employeur est requis
+      </mat-error>
+      <mat-error *ngIf="employeurForm.get('nomemployeur')?.hasError('minlength')">
+        Le nom doit contenir au moins 2 caractères
+      </mat-error>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-button type="button" (click)="cancel()">Annuler</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!employeurForm.valid">
+        Enregistrer
+      </button>
+    </div>
+  </form>
+</div> 

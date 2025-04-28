@@ -20,6 +20,8 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { LoginComponent } from './views/login-component/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { EmployeurModule } from './modules/employeur/employeur.module';
+import { FormateurModule } from './modules/formateur/formateur.module';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { MatInputModule } from '@angular/material/input';
     UtilisateursModule,
     FormationModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    EmployeurModule,
+    FormateurModule
   ],
   providers: [],
   bootstrap: [AppComponent]

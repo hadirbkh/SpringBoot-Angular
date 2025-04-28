@@ -1,0 +1,89 @@
+<div class="container">
+  <h2>Ajouter un Formateur</h2>
+
+  <form [formGroup]="formateurForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="nom" placeholder="Entrez le nom">
+      <mat-error *ngIf="formateurForm.get('nom')?.hasError('required')">
+        Le nom est requis
+      </mat-error>
+      <mat-error *ngIf="formateurForm.get('nom')?.hasError('minlength')">
+        Le nom doit contenir au moins 2 caractères
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Prénom</mat-label>
+      <input matInput formControlName="prenom" placeholder="Entrez le prénom">
+      <mat-error *ngIf="formateurForm.get('prenom')?.hasError('required')">
+        Le prénom est requis
+      </mat-error>
+      <mat-error *ngIf="formateurForm.get('prenom')?.hasError('minlength')">
+        Le prénom doit contenir au moins 2 caractères
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Entrez l'email">
+      <mat-error *ngIf="formateurForm.get('email')?.hasError('required')">
+        L'email est requis
+      </mat-error>
+      <mat-error *ngIf="formateurForm.get('email')?.hasError('email')">
+        Format d'email invalide
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Téléphone</mat-label>
+      <input matInput formControlName="tel" placeholder="Entrez le numéro de téléphone">
+      <mat-error *ngIf="formateurForm.get('tel')?.hasError('required')">
+        Le numéro de téléphone est requis
+      </mat-error>
+      <mat-error *ngIf="formateurForm.get('tel')?.hasError('pattern')">
+        Format de numéro de téléphone invalide (10 chiffres)
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let type of types" [value]="type">
+          {{type}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formateurForm.get('type')?.hasError('required')">
+        Le type est requis
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Employeur</mat-label>
+      <mat-select formControlName="employeur">
+        <mat-option *ngFor="let employeur of employeurs" [value]="employeur">
+          {{employeur.nomemployeur}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formateurForm.get('employeur')?.hasError('required')">
+        L'employeur est requis
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Formations</mat-label>
+      <mat-select formControlName="formations" multiple>
+        <mat-option *ngFor="let formation of formations" [value]="formation">
+          {{formation.titre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-button type="button" (click)="cancel()">Annuler</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!formateurForm.valid">
+        Ajouter
+      </button>
+    </div>
+  </form>
+</div> 

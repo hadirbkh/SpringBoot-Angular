@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-update-formateur',
+  standalone: true,
   imports: [],
   templateUrl: './update-formateur.component.html',
-  styleUrl: './update-formateur.component.css'
+  styleUrls: ['./update-formateur.component.css']
 })
 export class UpdateFormateurComponent {
 

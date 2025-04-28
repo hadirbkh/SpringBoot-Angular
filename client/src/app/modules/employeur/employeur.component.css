@@ -1,0 +1,16 @@
+.container {
+  padding: 20px;
+}
+
+mat-card {
+  margin-bottom: 20px;
+}
+
+mat-card-header {
+  margin-bottom: 20px;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: 500;
+} 

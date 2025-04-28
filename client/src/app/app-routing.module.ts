@@ -13,7 +13,10 @@ const routes: Routes = [
   { path : "structures" , loadChildren: () => import('./modules/structure/structure.module').then(m => m.StructureModule)},
   { path : "participants" , loadChildren: () => import('./modules/participant/participant.module').then(m => m.ParticipantModule)},
   { path: 'statistics', component: StatisticsComponent },
-  {path : "profils" , loadChildren: () => import('./modules/profil/profil.module').then(m => m.ProfilModule)}
+  {path : "profils" , loadChildren: () => import('./modules/profil/profil.module').then(m => m.ProfilModule)},
+  { path: 'formateurs', loadChildren: () => import('./modules/formateur/formateur.module').then(m => m.FormateurModule) },
+  { path: 'employeurs', loadChildren: () => import('./modules/employeur/employeur.module').then(m => m.EmployeurModule) },
+  
 ];
 
 @NgModule({

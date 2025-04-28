@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-add-formateur',
   standalone:true,
   templateUrl: './add-formateur.component.html',
-  styleUrl: './add-formateur.component.css'
+  styleUrls: ['./add-formateur.component.css']
 })
 export class AddFormateurComponent {
 
