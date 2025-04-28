@@ -62,8 +62,10 @@ export class ProfilComponent {
   handleDelete(id: number) {
     if (this.isDeleting) return;
 
-    if (confirm("Êtes-vous sûr de vouloir supprimer ce Profil ?")) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer ce Profil ? Cette action est irréversible et mettra à jour les participants associés.")) {
       this.isDeleting = true;
+      this.showInfo('Suppression en cours...');
+      
       this.profilService.deleteProfil(id).subscribe({
         next: () => {
           this.showSuccess('Profil supprimé avec succès');
@@ -71,7 +73,7 @@ export class ProfilComponent {
         },
         error: (err) => {
           console.error('Erreur lors de la suppression:', err);
-          this.showError('Erreur lors de la suppression');
+          this.showError('Erreur lors de la suppression: ' + (err.error?.message || 'Une erreur est survenue'));
           this.isDeleting = false;
         }
       });
@@ -87,10 +89,21 @@ export class ProfilComponent {
     });
   }
 
+  showInfo(message: string) {
+    this.snackBar.open(message, 'Fermer', {
+      duration: 2000,
+      panelClass: ['info-snackbar'],
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    });
+  }
+
   private showError(message: string) {
     this.snackBar.open(message, 'Fermer', {
-      duration: 3000,
-      panelClass: ['error-snackbar']
+      duration: 5000,
+      panelClass: ['error-snackbar'],
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
     });
   }
 

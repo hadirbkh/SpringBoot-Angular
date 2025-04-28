@@ -47,6 +47,31 @@ export class FormationComponent {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch(property) {
+        case 'domaine': return item.domaine?.libelle || ""
+        default: return item[property as keyof Formation] as string|number;
+      }
+    };
+
+    this.dataSource.filterPredicate = (data: Formation, filter: string) => {
+      const dataStr = (data.titre + ' '
+                      + data.annee + ' '
+                      + data.duree + ' '
+                      + data.budget + ' '
+                      +(data.domaine?.libelle || '')
+
+                    ).toLowerCase();
+      return dataStr.includes(filter.trim().toLowerCase());
+    };
+
+  }
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
  /* loadUsers() {

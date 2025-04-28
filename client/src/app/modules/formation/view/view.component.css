@@ -91,3 +91,83 @@
       flex: 0 0 80px;
     }
   }
+
+.formation-card {
+  max-width: 900px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  padding: 16px;
+  background-color: #f5f5f5;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-label {
+  font-weight: 500;
+  width: 180px;
+  color: #555;
+}
+
+.detail-value {
+  flex: 1;
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.loading-state span {
+  margin-top: 16px;
+  color: #666;
+}
+
+.section-divider {
+  margin: 24px 0;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.participants-table {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.no-data-message {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 20px 0;
+}
+
+mat-card-actions {
+  padding: 16px;
+  display: flex;
+  justify-content: flex-end;
+}

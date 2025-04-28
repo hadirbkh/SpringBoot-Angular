@@ -18,6 +18,7 @@ export class AddComponent implements OnInit {
     titre: "",
     annee: 0,
     duree: 0,
+    capaciteMax: 0,
     budget: 0,
     domaine : null
   } as Formation;

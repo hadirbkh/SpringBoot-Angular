@@ -114,4 +114,9 @@ table {
 .button{
     background-color: rgb(82, 163, 255);
     color: black;
+}
+
+.info-snackbar {
+  background: #2196f3;
+  color: white;
 } 

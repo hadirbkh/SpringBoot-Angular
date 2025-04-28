@@ -53,6 +53,13 @@ public class UtilisateurController {
                  .findById(id)
                  .orElse(null);    
     }
+
+    @GetMapping("/getByLogin/{login}")
+    public Utilisateur getUtilisateurByLogin(@PathVariable String login) {
+        return utilisateurRepo.
+                findByLogin(login)
+                .orElse(null);    
+    }
     
 
     @PutMapping("/{id}")
