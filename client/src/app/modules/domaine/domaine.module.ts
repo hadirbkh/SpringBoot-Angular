@@ -9,7 +9,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatInputModule} from '@angular/material/input';
 import { DomaineRoutingModule } from './domaine-routing.module';
-import { ViewComponent } from './view/view.component';
 import { EditComponent } from './edit/edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AddComponent } from './add/add.component';
@@ -25,7 +24,6 @@ import { MatSortModule } from '@angular/material/sort';
   declarations: [
     DomaineComponent,
     AddComponent,
-    ViewComponent,
     EditComponent,
     PageNotFoundComponent
   ],

@@ -19,7 +19,7 @@ export class AuthService {
   token = new BehaviorSubject<string|undefined>(undefined);
   token$ = this.loggedUser.asObservable();
 
-  constructor(private httpClient: HttpClient , private utilisateursService : UtilisateursService){
+  constructor(private httpClient: HttpClient ){
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       const userObj = JSON.parse(storedUser);
@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   getUser(userParam:Utilisateur){
-    this.utilisateursService.getUserByLogin(userParam.login).subscribe(
+    this.httpClient.get<Utilisateur>(`http://localhost:8080/api/utilisateur/getByLogin/${userParam.login}`).subscribe(
       (user:Utilisateur)=>{
         const safeUser = {...user,password:""}
         this.loggedUser.next(safeUser)
@@ -45,6 +45,7 @@ export class AuthService {
       }
     )
   }
+
 
   logout(){
     this.loggedUser.next(undefined)

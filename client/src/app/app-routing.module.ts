@@ -16,7 +16,7 @@ const routes: Routes = [
   {path : "profils" , loadChildren: () => import('./modules/profil/profil.module').then(m => m.ProfilModule)},
   { path: 'formateurs', loadChildren: () => import('./modules/formateur/formateur.module').then(m => m.FormateurModule) },
   { path: 'employeurs', loadChildren: () => import('./modules/employeur/employeur.module').then(m => m.EmployeurModule) },
-  
+
 ];
 
 @NgModule({

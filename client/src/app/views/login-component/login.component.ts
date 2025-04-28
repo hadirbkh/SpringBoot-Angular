@@ -13,10 +13,6 @@ export class LoginComponent {
   user : Utilisateur={
     login:'',
     password:'',
-    role: {
-      id:1,
-      nom:"ADMIN"
-    }
   } as Utilisateur;
 
   error = false

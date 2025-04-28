@@ -1,11 +1,9 @@
-import { FormationService } from '.././../../services/formation.service';
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Domaine } from 'src/app/models/domaine';
 import { Formation } from 'src/app/models/formation';
-import { Utilisateur } from 'src/app/models/utilisateur';
 import { DomaineService } from 'src/app/services/domaine.service';
-import { UtilisateursService } from 'src/app/services/utilisateurs.service';
+import { FormationService } from '.././../../services/formation.service';
 
 @Component({
   selector: 'app-edit',

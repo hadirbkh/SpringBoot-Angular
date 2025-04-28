@@ -11,6 +11,7 @@ import { Utilisateur } from '../../models/utilisateur';
 import { UtilisateursService } from '../../services/utilisateurs.service';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
+import { ROLES } from 'src/app/constants/contants';
 
 @Component({
   selector: 'app-utilisateurs',
@@ -24,6 +25,10 @@ export class UtilisateursComponent {
   displayColumns = ["select", "name", "login", "Actions"];
   isDeleting = false;
 
+  nbrOfUsers = 0
+  nbrOfAdmins = 0
+  nbrOfResponsables = 0
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -35,6 +40,9 @@ export class UtilisateursComponent {
       this.utilisateurService.utilisateurs$.subscribe(users => {
         this.utilisateur= users;
         this.dataSource.data = this.utilisateur;
+        this.nbrOfUsers = this.utilisateur.filter(u=>u.role?.nom === ROLES.UTILISATEUR)?.length
+        this.nbrOfAdmins = this.utilisateur.filter(u=>u.role?.nom === ROLES.ADMIN)?.length
+        this.nbrOfResponsables = this.utilisateur.filter(u=>u.role?.nom === ROLES.RESPONSABLE)?.length
       });
   }
 

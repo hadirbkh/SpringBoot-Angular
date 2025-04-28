@@ -1,1 +1,86 @@
-Welcome
+
+
+<div class="home-container">
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="mat-display-2">Bienvenue {{user.login}}, sur notre Plateforme</h1>
+      <p class="mat-subheading-2">Solution complète pour la gestion de vos formations professionnelles</p>
+     </div>
+
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <section class="stats-section">
+    <h2 class="mat-headline">Notre Plateforme en Chiffres</h2>
+    <div class="counters-container" fxLayout="row" fxLayoutGap="32px" fxLayoutAlign="center center">
+      <mat-card class="counter-card">
+        <mat-card-content>
+          <h2 class="mat-display-1">{{participantCounter}}+</h2>
+          <p class="mat-body-1">Participants</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="counter-card">
+        <mat-card-content>
+          <h2 class="mat-display-1">{{formationCounter}}+</h2>
+          <p class="mat-body-1">Formations</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="counter-card">
+        <mat-card-content>
+          <h2 class="mat-display-1">98%</h2>
+          <p class="mat-body-1">Satisfaction</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <section class="features-section">
+    <h2 class="mat-headline">Fonctionnalités Clés</h2>
+    <mat-grid-list cols="3" rowHeight="1:1" gutterSize="16px">
+      <mat-grid-tile>
+        <mat-card class="feature-card">
+          <mat-icon class="feature-icon">school</mat-icon>
+          <mat-card-title>Catalogue de Formations</mat-card-title>
+          <mat-card-content>
+            Gestion centralisée de toutes vos offres de formation
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-card class="feature-card">
+          <mat-icon class="feature-icon">calendar_today</mat-icon>
+          <mat-card-title>Planification</mat-card-title>
+          <mat-card-content>
+            Organisation des sessions et gestion des calendriers
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-card class="feature-card">
+          <mat-icon class="feature-icon">group</mat-icon>
+          <mat-card-title>Gestion des Apprenants</mat-card-title>
+          <mat-card-content>
+            Suivi complet des participants et de leur progression
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </section>
+
+  <mat-divider></mat-divider>
+
+
+</div>
+
+<footer class="footer mat-elevation-z6">
+  <div class="footer-content">
+    <p>© 2025 Plateforme de Gestion de Formations. Tous droits réservés.</p>
+  </div>
+</footer>

@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { UtilisateursService } from '../../services/utilisateurs.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   MatDialog,

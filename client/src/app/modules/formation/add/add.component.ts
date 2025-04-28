@@ -1,10 +1,9 @@
-import { DomaineService } from './../../../services/domaine.service';
-import { FormationService } from '../../../services/formation.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Formation } from 'src/app/models/formation';
-import { UtilisateursService } from 'src/app/services/utilisateurs.service';
 import { Domaine } from 'src/app/models/domaine';
+import { Formation } from 'src/app/models/formation';
+import { FormationService } from '../../../services/formation.service';
+import { DomaineService } from './../../../services/domaine.service';
 
 @Component({
   selector: 'app-add',

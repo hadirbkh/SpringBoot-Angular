@@ -1,38 +1,39 @@
-
 <div class="full-page-container">
-  <div class="login-box" >
+  <div class="login-box">
+    <mat-dialog-content>
+      <div class="logo-container">
+        <mat-icon class="logo-icon">lock</mat-icon>
+        <h2>Bienvenue</h2>
+      </div>
 
+      <div *ngIf="error" class="error-message">
+        <mat-icon>error_outline</mat-icon>
+        <span>Identifiant ou mot de passe incorrect</span>
+      </div>
 
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Identifiant</mat-label>
+        <input matInput [(ngModel)]="user.login" name="login" required #login="ngModel">
+        <mat-icon matPrefix>person</mat-icon>
+      </mat-form-field>
 
-      <mat-dialog-content >
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password" name="password" required #password="ngModel"/>
+        <mat-icon matPrefix>lock</mat-icon>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
 
-        <div *ngIf="error" style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin-bottom: 10px;">
-          Nom d'utilisateur ou mot de pass invalide
-        </div>
+      <button mat-raised-button color="primary" class="login-button" (click)="logUser()">
+        <span>Se connecter</span>
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
 
-
-        <mat-form-field style="width:100%;">
-          <mat-label>Login</mat-label>
-          <input matInput [(ngModel)]="user.login" name="login"  required #login="ngModel">
-        </mat-form-field>
-
-        <mat-form-field style="width:100%;" >
-            <mat-label>Enter your password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password"   name="password"  required pattern="^(?=.*[A-Z])(?=.*\d).{6,}$" #password="ngModel"/>
-            <button
-            mat-icon-button
-            matSuffix
-            (click)="clickEvent($event)"
-            [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide"
-            >
-            <mat-icon>{{ hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
-
-        <button mat-flat-button color="primary" style="width: 100%;" (click)="logUser()">Login</button>
-
-
-      </mat-dialog-content>
+      <div class="footer-links">
+        <a href="/register" class="create-account">Vous n'avez pas de compte ? Créez-en un</a>
+      </div>
+    </mat-dialog-content>
   </div>
 </div>
