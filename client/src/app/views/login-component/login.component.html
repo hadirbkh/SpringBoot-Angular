@@ -2,7 +2,15 @@
 <div class="full-page-container">
   <div class="login-box" >
 
+
+
       <mat-dialog-content >
+
+        <div *ngIf="error" style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin-bottom: 10px;">
+          Nom d'utilisateur ou mot de pass invalide
+        </div>
+
+
         <mat-form-field style="width:100%;">
           <mat-label>Login</mat-label>
           <input matInput [(ngModel)]="user.login" name="login"  required #login="ngModel">

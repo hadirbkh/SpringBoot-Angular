@@ -20,6 +20,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatProgressSpinnerModule,MatSnackBarModule,
     MatDialogModule,
     MatButtonModule,MatFormFieldModule,
-    MatInputModule,FormsModule,MatSelectModule
+    MatInputModule,FormsModule,MatSelectModule,
+    MatSortModule
 
   ],
   exports: [
