@@ -1,24 +1,33 @@
 
 <ng-container *ngIf="loggedUser ; else loginTemplate" >
-  <mat-toolbar class="hearder-toolbar">
-    <button mat-icon-button (click)="toggleSidebar()"class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon >menu</mat-icon>
+<!-- app.component.html -->
+<mat-toolbar color="primary" class="header-toolbar mat-elevation-z4">
+  <div class="toolbar-left">
+    <button mat-icon-button (click)="toggleSidebar()" class="menu-button" aria-label="Toggle sidebar">
+      <mat-icon>menu</mat-icon>
     </button>
-    <a class="app-title" >My App</a>
-    <span class="header-spacer"></span>
+    <a class="app-title" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+      <span class="app-name">Gestion de formation</span>
+    </a>
+  </div>
 
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logout()" >
+  <span class="header-spacer"></span>
+
+  <div class="toolbar-right">
+    <button mat-icon-button class="logout-button" aria-label="Logout" (click)="logout()" matTooltip="Déconnexion">
       <mat-icon>logout</mat-icon>
     </button>
-  </mat-toolbar>
-  <mat-drawer-container class="content-container">
-    <mat-drawer mode="side" [opened]="sidebarOpen" class="sidebar">
-        <app-sidebar></app-sidebar>
-    </mat-drawer>
-    <mat-drawer-content class="main-content">
-        <router-outlet></router-outlet>
-    </mat-drawer-content>
-  </mat-drawer-container>
+  </div>
+</mat-toolbar>
+
+<mat-drawer-container class="content-container" autosize>
+  <mat-drawer #drawer mode="side" [opened]="sidebarOpen" class="sidebar mat-elevation-z2">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content class="main-content">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
 </ng-container>
 <ng-template #loginTemplate>
   <login-component></login-component>

@@ -37,7 +37,6 @@ export class EditComponent implements OnInit {
   submitUser(){
     this.utilisateurService.updateUser(this.utilisateur).subscribe((data: Utilisateur) => {
       this.utilisateur = data;
-      console.log(data);
     });  }
 
 }

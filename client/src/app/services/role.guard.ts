@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { Utilisateur } from '../models/utilisateur';
+import { ROLES } from '../constants/contants';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class RoleGuard implements CanActivate {
     return this.authService.loggedUser$.pipe(
       take(1),
       map((user : Utilisateur|undefined )=> {
-        if (user && user.role?.nom === expectedRole) {
+        if (user &&   [expectedRole,ROLES.ADMIN].includes(user.role?.nom)  ) {
           return true;
         } else {
           this.router.navigate(['/']); // or redirect to a "403" page
