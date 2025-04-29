@@ -72,7 +72,7 @@ public class UtilisateurController {
                     if (updated.getLogin() != null) {
                         utilisateur.setLogin(updated.getLogin());
                     }
-                    if (updated.getPassword() != null) {
+                    if (updated.getPassword() != null && updated.getPassword()!="") {
                         utilisateur.setPassword(passwordEncoder.encode(updated.getPassword()));
                     }
                     if (updated.getRole() != null ) {
